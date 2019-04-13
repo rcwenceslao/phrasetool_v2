@@ -1,52 +1,107 @@
-<?php
 
+<?php
 
 function __autoload($class)
 {
   require_once "../../classes/$class.php";
 }
 
-$finalMonth = '';
-$finalYear = '';
-$monthSelected = '';
-$yearSelected = '';
-
-if(!isset($_GET['page']))
-{
-     $page = 1;
-}else
-{
-    $page = $_GET['page']; 
+function test_input($data) {
+  $data = trim($data);
+  $data = stripslashes($data);
+  $data = htmlspecialchars($data);
+  return $data;
 }
 
-if (isset($_POST['monthSelected']))
-{
-    $monthSelected = $_POST['monthSelected'];
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+
+
+  $companyName = test_input($_POST["companyName"]);
+  $street1 = test_input($_POST["street1"]);
+  $street2 = test_input($_POST["street2"]);
+  $street3 = test_input($_POST["street3"]);
+  $zipCode = test_input($_POST["zipCode"]);
+  $city = test_input($_POST["city"]);
+  $countryId = test_input($_POST["country_id"]);
+  $phoneNumber = test_input($_POST["phoneNumber"]);
+  $fax = test_input($_POST["fax"]);
+  $email = test_input($_POST["email"]);
+  $kuerzel = test_input($_POST["kuerzel"]);
+
+   $company_fields = [   
+            'firma'=>$companyName,
+            'strasse1'=>$street1,
+            'strasse2'=>$street2,
+            'strasse3'=>$street3,
+            'plz'=>$zipCode,
+            'ort'=>$city,
+            'land_id'=>$countryId,
+            'telefon'=>$phoneNumber,
+            'telefax'=>$fax,
+            'email'=>$email,
+            'kuerzel'=>$kuerzel
+
+        ];
+        
+         $pt = new Phrasetool();
+       $pt->insertCompany($company_fields);
+
 }
-if (isset($_POST['daySelected']))
-{
-    $yearSelected = $_POST['daySelected'];
+
+
+
+
+
+
+/*
+
+if (isset($_POST['addCompany'])) {
+    
+
+    
+   
+   
+
+
+
+    $companyName = $_POST['companyName'];
+    $street1 = $_POST['street1']; 
+    $street2 = $_POST['street2'];
+    $street3 = $_POST['street3'];
+    $zipCode = $_POST['zipCode'];
+    $city = $_POST['city'];
+    $countryId = $_POST['country_id'];
+    $phoneNumber = $_POST['phoneNumber'];
+    $fax = $_POST['fax'];
+    $email = $_POST['email'];
+    $kuerzel = $_POST['kuerzel'];
+   // $timestamp = 
+
+        $company_fields = [   
+            'firma'=>$companyName,
+            'strasse1'=>$street1,
+            'strasse2'=>$street2,
+            'strasse3'=>$street3,
+            'plz'=>$zipCode,
+            'ort'=>$city,
+            'land_id'=>$countryId,
+            'telefon'=>$phoneNumber,
+            'telefax'=>$fax,
+            'email'=>$email,
+            'kuerzel'=>$kuerzel
+
+        ];
+        
+         $pt = new Phrasetool();
+       $pt->insertCompany($company_fields);
+
+
 }
-
-if (!is_null($monthSelected)&&!is_null($yearSelected))
-{
-if (strlen($monthSelected)=='1' || strlen($yearSelected) == '1')
-{
-    $temp = '0';
-}else
-{
-    $temp = '';
-}
-$finalMonth = $temp.$monthSelected;
-$finalYear = $temp.$yearSelected;
-}
-
-$date = $finalYear.$finalMonth;
-$timeStamp = date('Y-M-D H:i:s', substr($date, 0, 8));
-
-
-
+*/
 ?>
+
+
 
 
 <!DOCTYPE html>
@@ -172,7 +227,7 @@ $timeStamp = date('Y-M-D H:i:s', substr($date, 0, 8));
                                 </span>
                             </a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
-                                <li>
+                               <li>
                                     <a href="../phrasetext/phrasetext_landing.html">
                                         <i class="fas fa-search"></i>Search Phrasetext</a>
                                 </li>
@@ -193,7 +248,15 @@ $timeStamp = date('Y-M-D H:i:s', substr($date, 0, 8));
                         </li>
 
 
-                                                <li class="has-sub">
+                         <li class=" has-sub">
+                            <a class="js-arrow" href="#">
+                                <i class="fas fa-list-alt"></i>Phrasecatalogue
+                                <span class="arrow">
+                                    <i class="fas fa-angle-down"></i>
+                                </span>
+                            </a>
+                            <ul class="list-unstyled navbar__sub-list js-sub-list">
+                                <li class="has-sub">
                             <a class="js-arrow" href="#">
                                 <i class="fas fa-list-alt"></i>Phrasecatalogue
                                 <span class="arrow">
@@ -276,6 +339,9 @@ $timeStamp = date('Y-M-D H:i:s', substr($date, 0, 8));
                                
                             </ul>
                         </li>
+                               
+                            </ul>
+                        </li>
 
                          <li class=" has-sub">
                             <a class="js-arrow" href="#">
@@ -296,7 +362,6 @@ $timeStamp = date('Y-M-D H:i:s', substr($date, 0, 8));
                                 
                             </ul>
                         </li>
-
 
                         <li class="has-sub">
                             <a class="js-arrow" href="#">
@@ -336,7 +401,7 @@ $timeStamp = date('Y-M-D H:i:s', substr($date, 0, 8));
                                 </span>
                             </a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
-                                <li>
+                                 <li>
                                     <a href="admin_landing.php">
                                         <i class="far fa-calendar-alt"></i>Translations per month and user</a>
                                 </li>
@@ -605,7 +670,7 @@ $timeStamp = date('Y-M-D H:i:s', substr($date, 0, 8));
                                     -->
                                     </div>
                                     <div class="account-dropdown__body">
-                                       <div class="account-dropdown__item">
+                                        <div class="account-dropdown__item">
                                             <a href="../user/system-status.html">
                                                 <i class="fas fa-signal"></i>System Status</a>
                                         </div>
@@ -667,7 +732,7 @@ $timeStamp = date('Y-M-D H:i:s', substr($date, 0, 8));
                                         <i class="fas fa-user-plus"></i>New User</a>
                                 </li>
                                 <li>
-                                    <a href="../user/edit-profile.html">
+                                    <a href="edit-profile.html">
                                         <i class="fas fa-edit"></i>Edit Own Profile</a>
                                 </li>
                                 <li>
@@ -816,7 +881,8 @@ $timeStamp = date('Y-M-D H:i:s', substr($date, 0, 8));
                                 
                             </ul>
                         </li>
-                        <!--<li class=" has-sub">
+                        <!--
+                        <li class=" has-sub">
                             <a class="js-arrow" href="#">
                                 <i class="fas fa-tachometer-alt"></i>Property Tree
                                 <span class="arrow">
@@ -870,7 +936,8 @@ $timeStamp = date('Y-M-D H:i:s', substr($date, 0, 8));
                                 </li>
                                
                             </ul>
-                        </li> -->
+                        </li>
+                    -->
 
                         <li class="has-sub">
                             <a class="js-arrow" href="#">
@@ -910,7 +977,7 @@ $timeStamp = date('Y-M-D H:i:s', substr($date, 0, 8));
                                 </span>
                             </a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
-                                 <li>
+                                <li>
                                     <a href="admin_landing.php">
                                         <i class="far fa-calendar-alt"></i>Translations per month and user</a>
                                 </li>
@@ -938,8 +1005,7 @@ $timeStamp = date('Y-M-D H:i:s', substr($date, 0, 8));
                                
                             </ul>
                         </li>
-
-                        <li class=" has-sub">
+                         <li class=" has-sub">
                             <a class="js-arrow" href="#">
                                 <i class="fas fa-tachometer-alt"></i>Help
                                 <span class="arrow">
@@ -947,7 +1013,7 @@ $timeStamp = date('Y-M-D H:i:s', substr($date, 0, 8));
                                 </span>
                             </a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
-                                 <li>
+                                <li>
                                     <a href="../help/help_landing.html">
                                         <i class="far fa-file-alt"></i>Web Navigation</a>
                                 </li>
@@ -1111,7 +1177,7 @@ $timeStamp = date('Y-M-D H:i:s', substr($date, 0, 8));
                                             <li class="list-inline-item seprate">
                                                 <span>/</span>
                                             </li>
-                                            <li class="list-inline-item">Translations per month and user</li>
+                                            <li class="list-inline-item">Add New Company</li>
                                         </ul>
                                     </div>
                                     <!--
@@ -1129,140 +1195,125 @@ $timeStamp = date('Y-M-D H:i:s', substr($date, 0, 8));
 
             <!-- Container Start -->
             <center>
-                           
-                <div class="col-lg-12">
-                                <div class="card">
-                                    <div class="card-header">
-                                        <strong>Translations per month and user </strong>
-                                   </div>
-                                    <div class="card-body card-block">
-                                        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST" class="form-horizontal">
-                                            <?php
-                                            $pt = new Phrasetool();
-
-                                            ?>
-
-
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-header">Add New Company</div>
+                                <div class="card-body card-block">
+                                        <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
                                             <div class="row form-group">
                                                 <div class="col col-md-12">
                                                     <br>
-                                                    Select Month and Year.<i style="color:red;">*</i><br>
+                                                    Company Name <i style="color: red;">*</i><br>
+                                                    <div class="input-group">
+                                                        <input type="text" id="input1-group2" name="companyName" placeholder="" class="form-control" required ="required" maxlength="50">
+                                                    </div>
+                                                </div>
+                                                <div class="col col-md-12">
+                                                    <br>
+                                                    Street <i style="color: red;">*</i><br>
+                                                    <div class="input-group">
+                                                        <input type="text" id="input1-group2" name="street1" placeholder="" class="form-control" required ="required" maxlength="90">
+                                                    </div>
+                                                </div>
+                                                <div class="col col-md-12">
+                                                    <br>
+                                                    Street (Continued)<br>
+                                                    <div class="input-group">
+                                                        <input type="text" id="input1-group2" name="street2" placeholder="" class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="col col-md-12">
+                                                    <br>
+                                                    Street (Continued)<br>
+                                                    <div class="input-group">
+                                                        <input type="text" id="input1-group2" name="street3" placeholder="" class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="col col-md-12">
+                                                    <br>
+                                                    Zip Code <i style="color: red;">*</i><br>
+                                                    <div class="input-group">
+                                                        <input type="text" id="input1-group2" name="zipCode" placeholder="" class="form-control" required ="required" maxlength="32">
+                                                    </div>
+                                                </div>
+                                                <div class="col col-md-12">
+                                                    <br>
+                                                    City <i style="color: red;">*</i><br>
+                                                    <div class="input-group">
+                                                        <input type="text" id="input1-group2" name="city" placeholder="" class="form-control" required ="required" maxlength="50">
+                                                    </div>
+                                                </div>
+                                                <div class="col col-md-12">
+                                                    <br>
+                                                    Country<i style="color: red;">*</i> <br>
                                                     <div class="btn-group">
                                                         <div class="col-12 col-md-12">
-                                                                <select name="monthSelected" id="select" class="form-control">
-                                                                    <option value="1">January</option>
-                                                                    <option value="2">February</option>
-                                                                    <option value="3">March</option>
-                                                                    <option value="4">April</option>
-                                                                    <option value="5">May</option>
-                                                                    <option value="6">June</option>
-                                                                    <option value="7">July</option>
-                                                                    <option value="8">August</option>
-                                                                    <option value="9">September</option>
-                                                                    <option value="10">October</option>
-                                                                    <option value="11">November</option>
-                                                                    <option value="12">December</option>
-                                                                </select>
-                                                                <br>
+                                                              <select class="custom-select custom-select-lg mb-3" name="country_id" >
+                                                       
+                                                        <?php
+                                                             $pt = new Phrasetool();
+                                                                $rows = $pt->selectCountry();
+                                                                     foreach ($rows as $row) 
+                                                                        {
+                                                         ?>
+                                                                     <option  value="<?php echo$row['countryId']; ?>"><?php echo $row['country']; ?> </option>
+
+
+                                                          <?php
+                                                                     }
+
+
+                                                          ?>
+
+                                                    </select>
                                                         </div>
                                                     </div>
-                                                    <div class="btn-group">
-                                                            <div class="col-12 col-md-12">
-                                                                <select name="daySelected" id="select" class="form-control">
-                                                                        <?php
-
-                                                                    for ($x = 2012; $x < 2040; $x++){
-                                                                        echo "<option value=". $x .">". $x ."</option>";
-                                                                    }
-                                                                        ?>
-                                                                </select>
-                                                                <br>
-                                                            </div>
+                                                </div>
+                                                <div class="col col-md-12">
+                                                    <br>
+                                                    Phone<i style="color: red;">*</i><br>
+                                                    <div class="input-group">
+                                                        <input type="tel" id="input1-group2" name="phoneNumber" placeholder="" class="form-control" minlength="10" maxlength="20"  required ="required">
                                                     </div>
+                                                </div>
+                                                <div class="col col-md-12">
                                                     <br>
-                                                        <input type="hidden" name="form_submitted"/>
-                                                        <input type="submit" class="btn btn-success btn-sm"></input>
-                                                        <br>
+                                                    Fax<i style="color: red;">*</i><br>
+                                                    <div class="input-group">
+                                                        <input type="text" id="input1-group2" name="fax" placeholder="" class="form-control" maxlength="50" minlength="10" required ="required">
+                                                    </div>
+                                                </div>
+                                                <div class="col col-md-12">
                                                     <br>
-                                            </form>
-                                            <br>
-
-                                        <div class = "task-progress"><br>
-                                        <div class="table-responsive">
-                                        <table class="table table-hover">
-                                        <thead>
-                                        <tr>
-                                        <th>Prename</th>
-                                        <th>Surname</th>
-                                        <th>Translations</th>
-                                        <th>Company</th>
-                                        <th>Actions</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <?php
-
-
-                                            $rowCount = $pt->returnTranslationsPerMonth(); //return number of rows in db
-                                                $rowPerPage = 15; //number of rows per page
-                                                $numberOfPages = ceil($rowCount / $rowPerPage); //number of pages
-                                                $startingLimitNumber = ($page - 1) * $rowPerPage; //limit number
-
-                                            if (isset($_POST['form-submitted']))
-                                            {
-                                                $rows = $pt->viewTranslationsPerMonthDate($rowPerPage, $startingLimitNumber, $timeStamp);
-                                            }elseif (!isset($_POST['form-submitted'])) {
-                                                $rows = $pt->viewTranslationsPerMonth($rowPerPage, $startingLimitNumber, $date);
-                                            }
-                                            foreach ($rows as $row) 
-                                            {
-
-                                        ?>
-
-
-                                        <tr>
-                                        <th scope="row"><?php echo $row['firstName']; ?></th>
-                                        <td><?php echo $row['lastName']; ?></td>
-                                        <td><?php echo $row['translationCount']; ?></td>
-                                        <td><?php echo $row['companyName']; ?></td>
-                                        <td><a class="btn btn-sm btn-outline-primary" href="edit_phrasehead.php?id=<?php echo $row['firma_id']; ?>"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>&nbsp;Edit</a>&nbsp;<a  class="btn btn-sm btn-outline-success" href=""><i class="fa fa-file-text-o" aria-hidden="true"></i>&nbsp;View</a></td>
-                                        </tr>
-
-                                        <?php
-                                            }
-
-                                        ?>
-
-                                        </tbody>
-                                        </table>
-                                        </div>
-                                    </div>
-                                        <div class="col-md-12">
-                                             <div class="text-center">
-                                                <ul class="pagination pagination-lg">
-                                                <?php
-
-                                                    for($page = 1; $page <= $numberOfPages; $page++)
-                                                    {
-                                                        echo '<li><a href = "admin_landing.php?page='.$page.'">'. $page .'</a></li>';
-                                                    }
-                                                ?>
-                                            </ul>
-                                            </div>
-                                            </div>
-
+                                                    Email<i style="color: red;">*</i><br>
+                                                    <div class="input-group">
+                                                        <input type="email" id="input1-group2" name="email" placeholder="" class="form-control" maxlength="80" minlength="10" required ="required">
+                                                    </div>
+                                                </div>
+                                                <div class="col col-md-12">
+                                                    <br>
+                                                    Kuerzel <i style="color: red;">*</i><br>
+                                                    <div class="input-group">
+                                                        <input type="text" id="input1-group2" name="kuerzel" placeholder="" class="form-control"  >
+                                                    </div>
+                                                    <small> Use this field to define a standard code in your codes for the properties, classes and attributes.</small>
                                                 </div>
                                             </div>
-                                        <br>
-                                     
-                                    </div>
-                                        
+                                            <div class="form-group">
+                            <button type="submit" class="btn btn-success mb-4 mt-4" name="addCompany" ><i class="fa fa-floppy-o" aria-hidden="true"></i>&nbsp;Save</button>
+                            <!--<input type="submit" name="submit" class="btn btn-primary btn-lg btn-block" value="Add Chemical" >-->
+
+                        </div>
+                                        </form>
+                                        <!--
+                                         <br>
+                                             <button type="submit" class="btn btn-success btn-sm" name="addCompany">
+                                                        <i class="fa fa-dot-circle-o"></i> Submit
+                                            </button>
+                                        -->
                                 </div>
-                            </div>
-
-
-
-
+                        </div>
+                    </div>
             </center>
 
                                 <!-- MODAL -->
@@ -1278,7 +1329,7 @@ $timeStamp = date('Y-M-D H:i:s', substr($date, 0, 8));
                                            </div>
                                 <div class="modal-body">
                                     <p>
-                                        Are you sure you want to delete this Translation?
+                                        Are you sure you want to delete this Language?
                                     </p>
                                 </div>
                                 <div class="modal-footer">

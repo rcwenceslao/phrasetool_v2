@@ -1182,22 +1182,9 @@ color: white;
                             <div class="col-xl-12">
                                 <div class="statistic__item">
 
-                                    <?php
-                                    //GET PAGE NUMBER
-                                                
-
-                                         $pt = new Phrasetool();
-                                         $rowCount = $pt->returnPhrasegroupRowCount(); //return number of rows in db
-                                         $rowPerPage = 25; //number of rows per page
-                                         $numberOfPages = ceil($rowCount / $rowPerPage); //number of pages
-                                         $startingLimitNumber = ($page - 1) * $rowPerPage; //limit number
-                                         $rows = $pt->displayPhraseGroupList($rowPerPage,$startingLimitNumber);
-
-                                    ?>
-
                                     <h2>PHRASEGROUP</h2>
                                     <br>
-                                    <label> List of Phrasegroup recorded with a total of <?php echo $rowCount; ?> Phrasegroup(s).</label>
+                                    <label>Phrasegroup list page 1, showing [no. of records] records out of [no. of records] total. </label>
                                 </div>
                             </div>
                         </div>
@@ -1227,7 +1214,18 @@ color: white;
                                         <tbody>
                                             <?php
 
+                                                //GET PAGE NUMBER
                                                 
+
+                                                $pt = new Phrasetool();
+                                                $rowCount = $pt->returnPhrasegroupRowCount(); //return number of rows in db
+                                                $rowPerPage = 25; //number of rows per page
+                                                $numberOfPages = ceil($rowCount / $rowPerPage); //number of pages
+                                                $startingLimitNumber = ($page - 1) * $rowPerPage; //limit number
+
+
+
+                                                $rows = $pt->displayPhraseGroupList($rowPerPage,$startingLimitNumber);
 
                                                foreach ($rows as $row) 
                                                {
@@ -1241,16 +1239,11 @@ color: white;
 
 
                                             <td>
+                                                <a class="btn btn-sm btn-outline-primary" href="edit_phrasehead.php?id=<?php echo $row['phrasenkopf_id']; ?>"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>&nbsp;Edit</a>&nbsp;
+                                                <a class="btn btn-sm btn-outline-danger" href=""><i class="fa fa-trash-o" aria-hidden="true"></i>&nbsp;Delete</a>&nbsp;
                                                 <?php
                                                 echo "<a class='btn btn-sm btn-outline-primary' href=\"view_phrasegroup.php?value=".$phraseGroupID."\"><i class='fa fa-file-text-o' aria-hidden='true'></i>&nbsp;View</a>";
                                                 ?>
-                                                <a class="btn btn-sm btn-outline-warning" href="#?value=<?php echo $row['phrasenkopf_id']; ?>"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>&nbsp;Edit</a>&nbsp;
-                                                <?php
-                                                echo "<a class='btn btn-sm btn-outline-primary' href=\"view_phrasegroup.php?value=".$phraseGroupID."\"><i class='fa fa-file-text-o' aria-hidden='true'></i>&nbsp;Labelling</a>";
-                                                ?>
-                                                <button type="button" class="btn btn-sm btn-outline-danger" data-toggle="modal" data-target="#deletePhrasegroup"><i class="fa fa-trash-o" aria-hidden="true"></i>&nbsp;Delete</button>&nbsp;
-                                                
-                                                
                                                 
                                             </td>
                                           </tr>
@@ -1277,44 +1270,16 @@ color: white;
                                 <!-- DECLARE PAGE LINK -->
                                 <div class="col-md-12">
                                      <div class="text-center">
-
+                                        <ul class="pagination pagination-lg">
                                         <?php
 
-                                            $viewPageNumber = 10;
-
-                                            echo "<ul class='pagination'>";
-                                            if ($page > 0)
+                                            for($page = 1; $page <= $numberOfPages; $page++)
                                             {
-                                                echo "<li><a href='list_phrasegroup.php?page=".($page-1)."' class='button'>Previous</a></li>"; 
-                                            } else
-                                            {
-                                                echo "<li><a href='list_phrasegroup.php?page=".$page."' class='button'>Previous</a></li>";
+                                                echo '<li><a href = "list_phrasegroup.php?page='.$page.'">'. $page .'</a></li>';
                                             }
-                                             
-
-                                            for($pageNumber = 1; $pageNumber <= $numberOfPages; $pageNumber++)
-                                            {
-                                                
-                                                if ($pageNumber <= $viewPageNumber)
-                                                {
-                                                    echo '<li><a href = "list_phrasegroup.php?page='.$pageNumber.'">'. $pageNumber .'</a></li>';
-                                                }
-                                                
-                                            }  
-
-                                            if ($page < $numberOfPages)
-                                            {
-                                                echo "<li><a href='list_phrasegroup.php?page=".($page+1)."' class='button'>NEXT</a></li>";
-                                            } else
-                                            {
-                                                echo "<li><a href='list_phrasegroup.php?page=".$page."' class='button'>NEXT</a></li>";
-                                            }
-
-                                            
-                                            echo "</ul>";   
-
                                         ?>
-                                    
+                                    </ul>
+                                    </div>
                                     </div>
                                 </div>
                             </div>
@@ -1327,29 +1292,6 @@ color: white;
 
             <!-- END OF LABEL LIST DETAILS -->
 
-            <!-- MODAL -->
-
-                                <div class="modal fade" id="deletePhrasegroup" tabindex="-1" role="dialog" aria-labelledby="smallmodalLabel" aria-hidden="true">
-                                     <div class="modal-dialog modal-sm" role="document">
-                                        <div class="modal-content">
-                                           <div class="modal-header">
-                                                 <h5 class="modal-title" id="smallmodalLabel">Confirm Deletion?</h5>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                           </div>
-                                <div class="modal-body">
-                                    <p>
-                                        Are you sure you want to delete this Phrasegroup?
-                                    </p>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                                    <button type="button" class="btn btn-primary">Confirm</button>
-                                </div>
-                                        </div>
-                                    </div>
-                                </div>
 
             <!-- END BREADCRUMB-->
 

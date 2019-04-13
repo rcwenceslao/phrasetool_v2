@@ -1221,7 +1221,7 @@ function __autoload($class)
                             <td><?php echo $row['katalog_pin']; ?></td>
                             <td><?php echo $row['phrasengruppe']; ?></td>
                             <td><?php echo $row['phrasenid']; ?></td>
-                            <td><a class="btn btn-sm btn-outline-primary" href="edit_phrasehead.php?id=<?php echo $row['phrasenkopf_id']; ?>"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>&nbsp;Edit</a>&nbsp;<a class="btn btn-sm btn-outline-danger" href=""><i class="fa fa-trash-o" aria-hidden="true"></i>&nbsp;Delete</a>&nbsp;<a  class="btn btn-sm btn-outline-success" href=""><i class="fa fa-file-text-o" aria-hidden="true"></i>&nbsp;View</a></td>
+                            <td><a class="btn btn-sm btn-outline-primary" href="edit_phrasehead.php?id=<?php echo $row['phrasenkopf_id']; ?>"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>&nbsp;Edit</a>&nbsp;<a class="btn btn-sm btn-outline-danger" href=""><i class="fa fa-trash-o" aria-hidden="true"></i>&nbsp;Delete</a>&nbsp;<a  class="btn btn-sm btn-outline-success" href="view_phrasehead.php?read=<?php echo $row['phrasenkopf_id']; ?>"><i class="fa fa-file-text-o" aria-hidden="true"></i>&nbsp;View</a></td>
                             </tr>
                     <?php
                         }

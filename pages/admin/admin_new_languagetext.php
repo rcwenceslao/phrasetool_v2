@@ -1,53 +1,76 @@
 <?php
 
-
 function __autoload($class)
 {
   require_once "../../classes/$class.php";
+
+  $uid2 = "";
 }
 
-$finalMonth = '';
-$finalYear = '';
-$monthSelected = '';
-$yearSelected = '';
+?>
 
-if(!isset($_GET['page']))
-{
-     $page = 1;
-}else
-{
-    $page = $_GET['page']; 
-}
+<?php
 
-if (isset($_POST['monthSelected']))
+if(isset($_GET['read']))
 {
-    $monthSelected = $_POST['monthSelected'];
-}
-if (isset($_POST['daySelected']))
-{
-    $yearSelected = $_POST['daySelected'];
+    $uid = $_GET['read'];
+    $uid2 = $_GET['read'];
+
+    $pt = new Phrasetool();
+
+    $result = $pt->viewLanguageProperties($uid);
 }
 
-if (!is_null($monthSelected)&&!is_null($yearSelected))
-{
-if (strlen($monthSelected)=='1' || strlen($yearSelected) == '1')
-{
-    $temp = '0';
-}else
-{
-    $temp = '';
-}
-$finalMonth = $temp.$monthSelected;
-$finalYear = $temp.$yearSelected;
+
+function test_input($data) {
+  $data = trim($data);
+  $data = stripslashes($data);
+  $data = htmlspecialchars($data);
+  return $data;
 }
 
-$date = $finalYear.$finalMonth;
-$timeStamp = date('Y-M-D H:i:s', substr($date, 0, 8));
+
+if (isset($_POST['addLanguageText']) && $_SERVER["REQUEST_METHOD"] == "POST") {
+
+  $languageName = test_input($_POST["languageName"]);
+  $addDisplayLanguage = test_input($_POST["addDisplayLanguage"]);
+  $languageText = test_input($_POST["languageText"]);
+
+   $language_fields = [   
+            'sprache_id'=>$languageName,
+            'anzeigesprache_id'=>$addDisplayLanguage,
+            'sprachentext'=>$languageText
+
+        ];
+        
+        $pt = new Phrasetool();
+       $pt->insertNewLanguageText($language_fields);
+
+}
+
+/*if (isset($_POST['addLanguageText']) && $_SERVER["REQUEST_METHOD"] == "POST") {
+
+  $languageName = test_input($_POST["languageName"]);
+  $addDisplayLanguage = test_input($_POST["addDisplayLanguage"]);
+  $languageText = test_input($_POST["languageText"]);
+  $uidConverted = (int)$uid2;
+  $prioritaet = 1;
+
+   $language_fields = [   
+            'sprache_id'=>$languageName,
+            'anzeigesprache_id'=>$addDisplayLanguage,
+            'sprachentext'=>$languageText
+
+        ];
+        
+        $pt = new Phrasetool();
+        $pt->updateLanguageText($language_fields,$uid);
+
+}*/
 
 
 
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -172,7 +195,7 @@ $timeStamp = date('Y-M-D H:i:s', substr($date, 0, 8));
                                 </span>
                             </a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
-                                <li>
+                               <li>
                                     <a href="../phrasetext/phrasetext_landing.html">
                                         <i class="fas fa-search"></i>Search Phrasetext</a>
                                 </li>
@@ -193,7 +216,7 @@ $timeStamp = date('Y-M-D H:i:s', substr($date, 0, 8));
                         </li>
 
 
-                                                <li class="has-sub">
+                         <li class="has-sub">
                             <a class="js-arrow" href="#">
                                 <i class="fas fa-list-alt"></i>Phrasecatalogue
                                 <span class="arrow">
@@ -276,7 +299,6 @@ $timeStamp = date('Y-M-D H:i:s', substr($date, 0, 8));
                                
                             </ul>
                         </li>
-
                          <li class=" has-sub">
                             <a class="js-arrow" href="#">
                                 <i class="fas fa-tag"></i>Label
@@ -296,7 +318,6 @@ $timeStamp = date('Y-M-D H:i:s', substr($date, 0, 8));
                                 
                             </ul>
                         </li>
-
 
                         <li class="has-sub">
                             <a class="js-arrow" href="#">
@@ -336,7 +357,7 @@ $timeStamp = date('Y-M-D H:i:s', substr($date, 0, 8));
                                 </span>
                             </a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
-                                <li>
+                                 <li>
                                     <a href="admin_landing.php">
                                         <i class="far fa-calendar-alt"></i>Translations per month and user</a>
                                 </li>
@@ -667,7 +688,7 @@ $timeStamp = date('Y-M-D H:i:s', substr($date, 0, 8));
                                         <i class="fas fa-user-plus"></i>New User</a>
                                 </li>
                                 <li>
-                                    <a href="../user/edit-profile.html">
+                                    <a href="edit-profile.html">
                                         <i class="fas fa-edit"></i>Edit Own Profile</a>
                                 </li>
                                 <li>
@@ -679,7 +700,7 @@ $timeStamp = date('Y-M-D H:i:s', substr($date, 0, 8));
                                         <i class="far fa-edit"></i>Edit Company</a>
                                 </li>
                                 <li>
-                                    <a href="../user/system-status.html">
+                                    <a href="index4.html">
                                         <i class="fas fa-tachometer-alt"></i>System Status</a>
                                 </li>
                             </ul>
@@ -714,7 +735,15 @@ $timeStamp = date('Y-M-D H:i:s', substr($date, 0, 8));
                         </li>
 
 
-                        <li class="has-sub">
+                         <li class=" has-sub">
+                            <a class="js-arrow" href="#">
+                                <i class="fas fa-tachometer-alt"></i>Phrasecatalogue
+                                <span class="arrow">
+                                    <i class="fas fa-angle-down"></i>
+                                </span>
+                            </a>
+                            <ul class="list-unstyled navbar__sub-list js-sub-list">
+                                  <li class="has-sub">
                             <a class="js-arrow" href="#">
                                 <i class="fas fa-list-alt"></i>Phrasecatalogue
                                 <span class="arrow">
@@ -797,6 +826,11 @@ $timeStamp = date('Y-M-D H:i:s', substr($date, 0, 8));
                                
                             </ul>
                         </li>
+
+                               
+                            </ul>
+                        </li>
+
                          <li class=" has-sub">
                             <a class="js-arrow" href="#">
                                 <i class="fas fa-tachometer-alt"></i>Label
@@ -816,7 +850,8 @@ $timeStamp = date('Y-M-D H:i:s', substr($date, 0, 8));
                                 
                             </ul>
                         </li>
-                        <!--<li class=" has-sub">
+                        <!--
+                        <li class=" has-sub">
                             <a class="js-arrow" href="#">
                                 <i class="fas fa-tachometer-alt"></i>Property Tree
                                 <span class="arrow">
@@ -870,7 +905,8 @@ $timeStamp = date('Y-M-D H:i:s', substr($date, 0, 8));
                                 </li>
                                
                             </ul>
-                        </li> -->
+                        </li>
+                    -->
 
                         <li class="has-sub">
                             <a class="js-arrow" href="#">
@@ -910,7 +946,7 @@ $timeStamp = date('Y-M-D H:i:s', substr($date, 0, 8));
                                 </span>
                             </a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
-                                 <li>
+                                <li>
                                     <a href="admin_landing.php">
                                         <i class="far fa-calendar-alt"></i>Translations per month and user</a>
                                 </li>
@@ -938,8 +974,7 @@ $timeStamp = date('Y-M-D H:i:s', substr($date, 0, 8));
                                
                             </ul>
                         </li>
-
-                        <li class=" has-sub">
+                         <li class=" has-sub">
                             <a class="js-arrow" href="#">
                                 <i class="fas fa-tachometer-alt"></i>Help
                                 <span class="arrow">
@@ -947,7 +982,7 @@ $timeStamp = date('Y-M-D H:i:s', substr($date, 0, 8));
                                 </span>
                             </a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
-                                 <li>
+                               <li>
                                     <a href="../help/help_landing.html">
                                         <i class="far fa-file-alt"></i>Web Navigation</a>
                                 </li>
@@ -1111,7 +1146,7 @@ $timeStamp = date('Y-M-D H:i:s', substr($date, 0, 8));
                                             <li class="list-inline-item seprate">
                                                 <span>/</span>
                                             </li>
-                                            <li class="list-inline-item">Translations per month and user</li>
+                                            <li class="list-inline-item">Add New Language Text</li>
                                         </ul>
                                     </div>
                                     <!--
@@ -1129,140 +1164,138 @@ $timeStamp = date('Y-M-D H:i:s', substr($date, 0, 8));
 
             <!-- Container Start -->
             <center>
-                           
-                <div class="col-lg-12">
-                                <div class="card">
-                                    <div class="card-header">
-                                        <strong>Translations per month and user </strong>
-                                   </div>
-                                    <div class="card-body card-block">
-                                        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST" class="form-horizontal">
-                                            <?php
-                                            $pt = new Phrasetool();
-
-                                            ?>
-
-
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-header">Add New Language Text </div>
+                                <div class="card-body card-block">
+                                        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" class="form-horizontal">
                                             <div class="row form-group">
                                                 <div class="col col-md-12">
                                                     <br>
-                                                    Select Month and Year.<i style="color:red;">*</i><br>
+                                                    Language<i style="color: red;">*</i> <br>
                                                     <div class="btn-group">
                                                         <div class="col-12 col-md-12">
-                                                                <select name="monthSelected" id="select" class="form-control">
-                                                                    <option value="1">January</option>
-                                                                    <option value="2">February</option>
-                                                                    <option value="3">March</option>
-                                                                    <option value="4">April</option>
-                                                                    <option value="5">May</option>
-                                                                    <option value="6">June</option>
-                                                                    <option value="7">July</option>
-                                                                    <option value="8">August</option>
-                                                                    <option value="9">September</option>
-                                                                    <option value="10">October</option>
-                                                                    <option value="11">November</option>
-                                                                    <option value="12">December</option>
-                                                                </select>
-                                                                <br>
-                                                        </div>
-                                                    </div>
-                                                    <div class="btn-group">
-                                                            <div class="col-12 col-md-12">
-                                                                <select name="daySelected" id="select" class="form-control">
-                                                                        <?php
+                                                                <select name="languageName" id="select" class="form-control">
+                                                                    <option value="<?php echo $result["languageID"]; ?>" selected><?php echo $result["languageName"]; ?></option>
+                                                                    <option value="2">------------</option>
+                                                                    <?php
+                                                                      $rows = $pt->displayLanguageValues();
 
-                                                                    for ($x = 2012; $x < 2040; $x++){
-                                                                        echo "<option value=". $x .">". $x ."</option>";
+                                                                      foreach ($rows as $row)
+                                                                      {  
+                                                                    ?>
+                                                                    <option value="<?php echo $result["sprache_id"]; ?>"><?php echo $row['languageName']; ?></option>
+
+                                                                    <?php
                                                                     }
-                                                                        ?>
+                                                                    ?>
+
+
+                                                                    <option value="2">-----RARER LANGUAGES-------</option>
+                                                                    <?php
+                                                                        $rowsRare = $pt->displayRareLanguageValues();
+
+                                                                        foreach ($rowsRare as $rowRareLanguage)
+                                                                        {
+                                                                    ?>
+
+                                                                    <option value="<?php echo $result["sprache_id"]; ?>">
+                                                                    
+                                                                    <?php
+                                                                        if (empty($rowRareLanguage['sprache_iso2']))
+                                                                        {
+                                                                            echo $rowRareLanguage['sprache_iso3'];
+                                                                        }else
+                                                                        {
+                                                                            echo $rowRareLanguage['sprache_iso2'];
+                                                                        }
+                                                                    ?>
+                                                                        
+                                                                    </option>
+
+                                                                    <?php
+                                                                        }
+                                                                    ?>
                                                                 </select>
-                                                                <br>
-                                                            </div>
+                                                        </div>
+                                                        
+                                                    </div>
+                                                    <small>Please select the language into which you want to translate, e.g. 'German'.</small>
+                                                </div>
+                                                <div class="col col-md-12">
+                                                    <br>
+                                                    Display Language<i style="color: red;">*</i> <br>
+                                                    <div class="btn-group">
+                                                        <div class="col-12 col-md-12">
+                                                                <select name="addDisplayLanguage" id="select" class="form-control">
+                                                                    <option value="1" Selected>English - EN</option>
+                                                                    <option value="2">------------</option>
+                                                                    <?php
+                                                                      $rows = $pt->displayLanguageValues();
+
+                                                                      foreach ($rows as $row)
+                                                                      {  
+                                                                    ?>
+                                                                    <option value="<?php echo $result["sprache_id"]; ?>"><?php echo $row['languageName']; ?></option>
+
+                                                                    <?php
+                                                                    }
+                                                                    ?>
+
+
+                                                                    <option value="2">-----RARER LANGUAGES-------</option>
+                                                                    <?php
+                                                                        $rowsRare = $pt->displayRareLanguageValues();
+
+                                                                        foreach ($rowsRare as $rowRareLanguage)
+                                                                        {
+                                                                    ?>
+
+                                                                    <option value="<?php echo $result["sprache_id"]; ?>">
+                                                                    
+                                                                    <?php
+                                                                        if (empty($rowRareLanguage['sprache_iso2']))
+                                                                        {
+                                                                            echo $rowRareLanguage['sprache_iso3'];
+                                                                        }else
+                                                                        {
+                                                                            echo $rowRareLanguage['sprache_iso2'];
+                                                                        }
+                                                                    ?>
+                                                                        
+                                                                    </option>
+
+                                                                    <?php
+                                                                        }
+                                                                    ?>
+
+
+                                                                </select>
+                                                        </div>
+                                                        
+                                                    </div>
+                                                    <small> Please select the language into which you want to translate, e.g. 'German'. </small>
+                                                </div>
+                                                <div class="col col-md-12">
+                                                    <br>
+                                                    Languagetext <i style="color: red;">*</i><br>
+                                                    <div class="input-group">
+                                                        <input type="text" id="input1-group2" name="languageText" placeholder="" class="form-control">
                                                     </div>
                                                     <br>
-                                                        <input type="hidden" name="form_submitted"/>
-                                                        <input type="submit" class="btn btn-success btn-sm"></input>
-                                                        <br>
-                                                    <br>
-                                            </form>
-                                            <br>
-
-                                        <div class = "task-progress"><br>
-                                        <div class="table-responsive">
-                                        <table class="table table-hover">
-                                        <thead>
-                                        <tr>
-                                        <th>Prename</th>
-                                        <th>Surname</th>
-                                        <th>Translations</th>
-                                        <th>Company</th>
-                                        <th>Actions</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <?php
-
-
-                                            $rowCount = $pt->returnTranslationsPerMonth(); //return number of rows in db
-                                                $rowPerPage = 15; //number of rows per page
-                                                $numberOfPages = ceil($rowCount / $rowPerPage); //number of pages
-                                                $startingLimitNumber = ($page - 1) * $rowPerPage; //limit number
-
-                                            if (isset($_POST['form-submitted']))
-                                            {
-                                                $rows = $pt->viewTranslationsPerMonthDate($rowPerPage, $startingLimitNumber, $timeStamp);
-                                            }elseif (!isset($_POST['form-submitted'])) {
-                                                $rows = $pt->viewTranslationsPerMonth($rowPerPage, $startingLimitNumber, $date);
-                                            }
-                                            foreach ($rows as $row) 
-                                            {
-
-                                        ?>
-
-
-                                        <tr>
-                                        <th scope="row"><?php echo $row['firstName']; ?></th>
-                                        <td><?php echo $row['lastName']; ?></td>
-                                        <td><?php echo $row['translationCount']; ?></td>
-                                        <td><?php echo $row['companyName']; ?></td>
-                                        <td><a class="btn btn-sm btn-outline-primary" href="edit_phrasehead.php?id=<?php echo $row['firma_id']; ?>"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>&nbsp;Edit</a>&nbsp;<a  class="btn btn-sm btn-outline-success" href=""><i class="fa fa-file-text-o" aria-hidden="true"></i>&nbsp;View</a></td>
-                                        </tr>
-
-                                        <?php
-                                            }
-
-                                        ?>
-
-                                        </tbody>
-                                        </table>
-                                        </div>
-                                    </div>
-                                        <div class="col-md-12">
-                                             <div class="text-center">
-                                                <ul class="pagination pagination-lg">
-                                                <?php
-
-                                                    for($page = 1; $page <= $numberOfPages; $page++)
-                                                    {
-                                                        echo '<li><a href = "admin_landing.php?page='.$page.'">'. $page .'</a></li>';
-                                                    }
-                                                ?>
-                                            </ul>
-                                            </div>
-                                            </div>
-
+                                                  <small>Enter the translation of Language in Displaylanguage, e.g. 'Franzoesisch'. </small>  
                                                 </div>
+                                                
+                                                
                                             </div>
-                                        <br>
-                                     
-                                    </div>
-                                        
+
+                                            <button type="submit" class="btn btn-success mb-4 mt-4" name="addLanguageText" ><i class="fa fa-floppy-o" aria-hidden="true"></i>&nbsp;Submit</button>
+                                        </form>
+                                         <br>
+                                             
                                 </div>
-                            </div>
-
-
-
-
+                        </div>
+                    </div>
             </center>
 
                                 <!-- MODAL -->
@@ -1278,7 +1311,7 @@ $timeStamp = date('Y-M-D H:i:s', substr($date, 0, 8));
                                            </div>
                                 <div class="modal-body">
                                     <p>
-                                        Are you sure you want to delete this Translation?
+                                        Are you sure you want to delete this Language?
                                     </p>
                                 </div>
                                 <div class="modal-footer">

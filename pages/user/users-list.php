@@ -1,20 +1,3 @@
-<?php
-
-function __autoload($class)
-{
-  require_once "../../classes/$class.php";
-}
-
-if(!isset($_GET['page']))
-{
-     $page = 1;
-}else
-{
-    $page = $_GET['page']; 
-}
-
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -1162,100 +1145,47 @@ if(!isset($_GET['page']))
                                    </div>
                                     <div class="card-body card-block">
                                         <div class = "task-progress">
-                                        <div class = "task-progress">
-                                            <div class="table-responsive">
-                                                <table class="table table-hover">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>Username</th>
-                                                            <th>Name</th>
-                                                            <th>Surname</th>
-                                                            <th>Company</th>
-                                                            <th>usergroup</th>
-                                                            <th>Actions</th>
-                                                        </tr>
-                                                    </thead>
-                                                        <tbody>
+                                        <div class="table-responsive">
+                                        <table class="table table-hover">
+                                        <thead>
+                                        <tr>
+                                        <th>Username</th>
+                                        <th>Name</th>
+                                        <th>Surname</th>
+                                        <th>Company</th>
+                                        <th>usergroup</th>
+                                        <th>Actions</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                        <td>Data 1</td>
+                                        <td>Data 2</td>
+                                        <td>Data 3</td>
+                                        <td>Data 4</td>
+                                        <td>Data 5</td>
+                                        <td>
 
-                                                            <?php
-                                                                $pt = new Phrasetool();
-                                                                $rowCount = $pt->returnUserListRowCount();
-                                                                $rowPerPage = 25;
-                                                                $numberOfPages = ceil($rowCount / $rowPerPage);
-                                                                $startingLimitNumber = ($page - 1) * $rowPerPage;
-
-
-                                                                $rows = $pt->displayUserList($rowPerPage, $startingLimitNumber);
-                                                                foreach ($rows as $row)
-                                                                {
-                                                                    $userID = $row['benutzer_id'];
-
-                                                            ?>
-
-                                                        <tr>
-                                                            <td><?php echo $row['benutzername']; ?></td>
-                                                            <td><?php echo $row['vorname']; ?></td>
-                                                            <td><?php echo $row['nachname']; ?></td>
-                                                            <td><?php echo $row['firma']; ?></td>
-                                                            <td><?php echo $row['gruppe']; ?></td>
-                                                            <td>
-
-                                                            <div style="margin-left:2em; margin-top:-0.1em; padding-left:1em;">
-                                                             <a class="btn btn-sm btn-outline-warning" href="edit_phrasehead.php?id=<?php echo $row['benutzer_id']; ?>"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>&nbsp;Edit</a>&nbsp;
-                                                            <button type="button" class="btn btn-sm btn-outline-danger" data-toggle="modal" data-target="#deleteUser"><i class="fa fa-trash-o" aria-hidden="true"></i>&nbsp;Delete</button>&nbsp;
-                                                            <?php
-                                                            echo "<a class='btn btn-sm btn-outline-primary' href=\"view_phrasegroup.php?value=".$userID."\"><i class='fa fa-file-text-o' aria-hidden='true'></i>&nbsp;View</a>";
-                                                            ?>
-                                                            </div>
-                                                            </td>
-                                                        </tr>
-
-                                                        <?php
-                                                            }
-                                                        ?>
-
-                                                        </tbody>
-                                                </table>
-                                            </div>
+                                        <div style="margin-left:2em; margin-top:-0.1em; padding-left:1em;">
+                                        <button type="button" class="btn btn-warning btn-sm">View</button>
+                                        <button type="button" class="btn btn-warning btn-sm">Edit</button>
+                                        <button type="button" class="btn btn-warning btn-sm">Delete</button>
                                         </div>
-                                    </div>
-                                        <div class="pagination">
-                                            <?php
+                                        </td>
+                                        </tr>
 
-                                            $viewPageNumber = 10;
-
-                                            echo "<ul class='pagination'>";
-                                            if ($page > 0)
-                                            {
-                                                echo "<li><a href='user-list.php?page=".($page-1)."' class='button'>Previous</a></li>"; 
-                                            } else
-                                            {
-                                                echo "<li><a href='user-list.php?page=".$page."' class='button'>Previous</a></li>";
-                                            }
-                                             
-
-                                            for($pageNumber = 1; $pageNumber <= $numberOfPages; $pageNumber++)
-                                            {
-                                                
-                                                if ($pageNumber <= $viewPageNumber)
-                                                {
-                                                    echo '<li><a href = "user-list.php?page='.$pageNumber.'">'. $pageNumber .'</a></li>';
-                                                }
-                                                
-                                            }  
-
-                                            if ($page < $numberOfPages)
-                                            {
-                                                echo "<li><a href='user-list.php?page=".($page+1)."' class='button'>NEXT</a></li>";
-                                            } else
-                                            {
-                                                echo "<li><a href='user-list.php?page=".$page."' class='button'>NEXT</a></li>";
-                                            }
-
-                                            
-                                            echo "</ul>";   
-
-                                        ?>
+                                        </tbody>
+                                        </table>
+                                        </div>
+                                        </div>
+                                        <div class="pagination" style="margin-left:20em;">
+                                            <a href="#"><<</a>
+                                            <a href="#">1</a>
+                                            <a href="#">2</a>
+                                            <a href="#">3</a>
+                                            <a href="#">4</a>
+                                            <a href="#">5</a>
+                                            <a href="#">>></a>
                                         </div>
                                     </div>
                                     <!--
@@ -1269,29 +1199,7 @@ if(!isset($_GET['page']))
                                 </div>
 
             
-            <!-- MODAL -->
 
-                                <div class="modal fade" id="deletePhrasecatalog" tabindex="-1" role="dialog" aria-labelledby="smallmodalLabel" aria-hidden="true">
-                                     <div class="modal-dialog modal-sm" role="document">
-                                        <div class="modal-content">
-                                           <div class="modal-header">
-                                                 <h5 class="modal-title" id="smallmodalLabel">Confirm Deletion?</h5>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                           </div>
-                                <div class="modal-body">
-                                    <p>
-                                        Are you sure you want to delete this Phrasegroup?
-                                    </p>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                                    <button type="button" class="btn btn-primary">Confirm</button>
-                                </div>
-                                        </div>
-                                    </div>
-                                </div>
 
 
             <!-- 

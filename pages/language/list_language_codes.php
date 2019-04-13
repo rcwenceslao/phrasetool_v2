@@ -1,3 +1,4 @@
+
 <?php
 
 
@@ -5,11 +6,6 @@ function __autoload($class)
 {
   require_once "../../classes/$class.php";
 }
-
-$finalMonth = '';
-$finalYear = '';
-$monthSelected = '';
-$yearSelected = '';
 
 if(!isset($_GET['page']))
 {
@@ -19,35 +15,9 @@ if(!isset($_GET['page']))
     $page = $_GET['page']; 
 }
 
-if (isset($_POST['monthSelected']))
-{
-    $monthSelected = $_POST['monthSelected'];
-}
-if (isset($_POST['daySelected']))
-{
-    $yearSelected = $_POST['daySelected'];
-}
-
-if (!is_null($monthSelected)&&!is_null($yearSelected))
-{
-if (strlen($monthSelected)=='1' || strlen($yearSelected) == '1')
-{
-    $temp = '0';
-}else
-{
-    $temp = '';
-}
-$finalMonth = $temp.$monthSelected;
-$finalYear = $temp.$yearSelected;
-}
-
-$date = $finalYear.$finalMonth;
-$timeStamp = date('Y-M-D H:i:s', substr($date, 0, 8));
-
 
 
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -61,7 +31,7 @@ $timeStamp = date('Y-M-D H:i:s', substr($date, 0, 8));
     <meta name="keywords" content="">
 
     <!-- Title Page-->
-    <title>Admin ~ Phrasetool by Rimpido</title>
+    <title>Phrasetext ~ Phrasetool by Rimpido</title>
 
     <!-- Fontfaces CSS-->
     <link href="../../css/font-face.css" rel="stylesheet" media="all">
@@ -127,7 +97,7 @@ $timeStamp = date('Y-M-D H:i:s', substr($date, 0, 8));
                 </div>
                 <nav class="navbar-sidebar2">
                     <ul class="list-unstyled navbar__list">
-                        <li class="has-sub">
+                        <li class=" has-sub">
                             <a class="js-arrow" href="#">
                                 <i class="fas fa-user"></i>User
                                 <span class="arrow">
@@ -140,19 +110,19 @@ $timeStamp = date('Y-M-D H:i:s', substr($date, 0, 8));
                                         <i class="fas fa-users"></i>List Of Users</a>
                                 </li>
                                 <li>
-                                    <a href="#.html">
+                                    <a href="#">
                                         <i class="fas fa-user-plus"></i>New User</a>
                                 </li>
                                 <li>
-                                    <a href="edit-profile.html">
+                                    <a href="../user/edit-profile.html">
                                         <i class="fas fa-edit"></i>Edit Own Profile</a>
                                 </li>
                                 <li>
-                                    <a href="admin_company_info.html">
+                                    <a href="../user/view_company.html">
                                         <i class="fas fa-eye"></i>View Company</a>
                                 </li>
                                 <li>
-                                    <a href="admin_edit_company.html">
+                                    <a href="../user/edit_company.html">
                                         <i class="far fa-edit"></i>Edit Company</a>
                                 </li>
                                 <!--
@@ -164,7 +134,7 @@ $timeStamp = date('Y-M-D H:i:s', substr($date, 0, 8));
                             </ul>
                         </li>
 
-                         <li class="has-sub">
+                         <li class=" has-sub">
                             <a class="js-arrow" href="#">
                                 <i class="fas fa-quote-left"></i>Phrasetext
                                 <span class="arrow">
@@ -193,7 +163,7 @@ $timeStamp = date('Y-M-D H:i:s', substr($date, 0, 8));
                         </li>
 
 
-                                                <li class="has-sub">
+                        <li class="has-sub">
                             <a class="js-arrow" href="#">
                                 <i class="fas fa-list-alt"></i>Phrasecatalogue
                                 <span class="arrow">
@@ -296,9 +266,64 @@ $timeStamp = date('Y-M-D H:i:s', substr($date, 0, 8));
                                 
                             </ul>
                         </li>
-
-
-                        <li class="has-sub">
+                        <!--
+                        <li class=" has-sub">
+                            <a class="js-arrow" href="#">
+                                <i class="fas fa-tree"></i>Property Tree
+                                <span class="arrow">
+                                    <i class="fas fa-angle-down"></i>
+                                </span>
+                            </a>
+                            <ul class="list-unstyled navbar__sub-list js-sub-list">
+                                <li>
+                                    <a href="index.html">
+                                        <i class="fas fa-list-ol"></i>List Trees</a>
+                                </li>
+                                <li>
+                                    <a href="index2.html">
+                                        <i class="fas fa-arrow-circle-down"></i>Property Tree Import</a>
+                                </li>
+                                <li>
+                                    <a href="index3.html">
+                                        <i class="fas fa-arrow-circle-up"></i>Property Tree Export</a>
+                                </li>
+                                <li>
+                                    <a href="index4.html">
+                                        <i class="fas fa-clipboard-list"></i>List Phrasesets</a>
+                                </li>
+                                <li>
+                                    <a href="index4.html">
+                                        <i class="far fa-copy"></i>Copy Phraseset</a>
+                                </li>
+                                <li>
+                                    <a href="index4.html">
+                                        <i class="fas fa-arrow-circle-down"></i>Phraseset Import</a>
+                                </li>
+                                <li>
+                                    <a href="index4.html">
+                                        <i class="fas fa-arrow-circle-up"></i>Phraseset Export</a>
+                                </li>
+                                <li>
+                                    <a href="index4.html">
+                                        <i class="fas fa-list-ul"></i>List Properties</a>
+                                </li>
+                                <li>
+                                    <a href="index4.html">
+                                        <i class="far fa-file"></i>New Property</a>
+                                </li>
+                                <li>
+                                    <a href="index4.html">
+                                        <i class="far fa-list-alt"></i>List Classes</a>
+                                </li>
+                                <li>
+                                    <a href="index4.html">
+                                        <i class="fas fa-th-list"></i>List Attributes</a>
+                                </li>
+                               
+                            </ul>
+                        </li>
+-->
+                        <li class="active has-sub">
                             <a class="js-arrow" href="#">
                                 <i class="fas fa-language"></i>Language
                                 <span class="arrow">
@@ -307,28 +332,30 @@ $timeStamp = date('Y-M-D H:i:s', substr($date, 0, 8));
                             </a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
                                 <li>
-                                    <a href="../language/language_landing.html">
+                                    <a href="language_landing.html">
                                         <i class="fas fa-list-ol"></i>List Languages</a>
                                 </li>
                                 <li>
-                                    <a href="../language/new_language.html">
+                                    <a href="new_language.html">
                                         <i class="far fa-plus-square"></i>New Language</a>
                                 </li>
                                 <li>
-                                    <a href="../language/list_language_codes.html">
+                                    <a href="list_language_codes.html">
                                         <i class="far fa-list-alt"></i>List Language Codes</a>
                                 </li>
                                 <li>
-                                    <a href="../language/new_language_code.html">
+                                    <a href="new_language_code.html">
                                         <i class="fas fa-folder-plus"></i>New Language Code</a>
                                 </li>
                                 <li>
-                                    <a href="../language/copy_language_code.html">
+                                    <a href="copy_language_codes.html">
                                         <i class="far fa-clone"></i>Copy Language Codes</a>
                                 </li>
+                                
+                               
                             </ul>
                         </li>
-                        <li class="active has-sub">
+                        <li class=" has-sub">
                             <a class="js-arrow" href="#">
                                 <i class="fas fa-user-secret"></i>Admin
                                 <span class="arrow">
@@ -337,27 +364,27 @@ $timeStamp = date('Y-M-D H:i:s', substr($date, 0, 8));
                             </a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
                                 <li>
-                                    <a href="admin_landing.php">
+                                    <a href="../admin/admin_landing.php">
                                         <i class="far fa-calendar-alt"></i>Translations per month and user</a>
                                 </li>
                                 <li>
-                                    <a href="admin_not_translated.html">
+                                    <a href="../admin/admin_not_translated.html">
                                         <i class="fas fa-exclamation"></i>Missing Translations of Languagetexts</a>
                                 </li>
                                 <li>
-                                    <a href="admin_country_not_translated.html">
+                                    <a href="../admin/admin_country_not_translated.html">
                                         <i class="far fa-flag"></i>Missing Translations of Countrynames</a>
                                 </li>
                                 <li>
-                                    <a href="admin_company_list.html">
+                                    <a href="../admin/admin_company_list.html">
                                         <i class="fas fa-list"></i>List of Companies</a>
                                 </li>
                                 <li>
-                                    <a href="admin_new_company.html">
+                                    <a href="../admin/admin_new_company.html">
                                         <i class="far fa-plus-square"></i>New Company</a>
                                 </li>
                                 <li>
-                                    <a href="admin_credit_point.html">
+                                    <a href="../admin/admin_credit_point.html">
                                         <i class="fas fa-coins"></i>List Creditpoints</a>
                                 </li>
                                 
@@ -374,7 +401,7 @@ $timeStamp = date('Y-M-D H:i:s', substr($date, 0, 8));
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
                                 <li>
                                     <a href="../help/help_landing.html">
-                                        <i class="far fa-file-alt"></i>Web Navigation</a>
+                                        <i class="far fa-map-marker-alt"></i>Web Navigation</a>
                                 </li>
                                 <li>
                                     <a href="../help/help-user.html">
@@ -392,6 +419,7 @@ $timeStamp = date('Y-M-D H:i:s', substr($date, 0, 8));
                                     <a href="../help/help-import-export.html">
                                         <i class="fas fa-arrows-alt-h"></i>Import and Export</a>
                                 </li>
+                               
                                 <li>
                                     <a href="#">
                                         <i class="fas fa-tag"></i>Labels</a>
@@ -529,7 +557,7 @@ $timeStamp = date('Y-M-D H:i:s', substr($date, 0, 8));
                         <div class="header-wrap2">
                             <div class="logo d-block d-lg-none">
                                 <a href="#">
-                                    <img src="../../image/icon/logo-white.png" alt="" />
+                                    <img src="" alt="" />
                                 </a>
                             </div>
                             <div class="header-button2">
@@ -605,8 +633,8 @@ $timeStamp = date('Y-M-D H:i:s', substr($date, 0, 8));
                                     -->
                                     </div>
                                     <div class="account-dropdown__body">
-                                       <div class="account-dropdown__item">
-                                            <a href="../user/system-status.html">
+                                        <div class="account-dropdown__item">
+                                            <a href="../privacy/system-status.html">
                                                 <i class="fas fa-signal"></i>System Status</a>
                                         </div>
                                         <div class="account-dropdown__item">
@@ -619,7 +647,7 @@ $timeStamp = date('Y-M-D H:i:s', substr($date, 0, 8));
                                         </div>
                                         <div class="account-dropdown__item">
                                             <a href="../privacy/debugging.html">
-                                                <i class="fas fa-lock"></i>Debugging</a>
+                                                <i class="fas fa-tools"></i>Debugging</a>
                                         </div>
                                         <!--
                                         <div class="account-dropdown__item">
@@ -637,7 +665,7 @@ $timeStamp = date('Y-M-D H:i:s', substr($date, 0, 8));
             <aside class="menu-sidebar2 js-right-sidebar d-block d-lg-none">
                 <div class="logo">
                     <a href="#">
-                        <img src="../../images/icon/logo-white.png" alt="" />
+                        <img src="" alt="" />
                     </a>
                 </div>
                 <div class="menu-sidebar2__content js-scrollbar2">
@@ -650,9 +678,9 @@ $timeStamp = date('Y-M-D H:i:s', substr($date, 0, 8));
                     </div>
                     <nav class="navbar-sidebar2">
                     <ul class="list-unstyled navbar__list">
-                        <li class="has-sub">
+                       <li class=" has-sub">
                             <a class="js-arrow" href="#">
-                                <i class="fas fa-tachometer-alt"></i>User
+                                <i class="fas fa-user"></i>User
                                 <span class="arrow">
                                     <i class="fas fa-angle-down"></i>
                                 </span>
@@ -663,7 +691,7 @@ $timeStamp = date('Y-M-D H:i:s', substr($date, 0, 8));
                                         <i class="fas fa-users"></i>List Of Users</a>
                                 </li>
                                 <li>
-                                    <a href="#.html">
+                                    <a href="#">
                                         <i class="fas fa-user-plus"></i>New User</a>
                                 </li>
                                 <li>
@@ -671,23 +699,25 @@ $timeStamp = date('Y-M-D H:i:s', substr($date, 0, 8));
                                         <i class="fas fa-edit"></i>Edit Own Profile</a>
                                 </li>
                                 <li>
-                                    <a href="admin_company_info.html">
+                                    <a href="../user/view_company.html">
                                         <i class="fas fa-eye"></i>View Company</a>
                                 </li>
                                 <li>
-                                    <a href="admin_edit_company.html">
+                                    <a href="../user/edit_company.html">
                                         <i class="far fa-edit"></i>Edit Company</a>
                                 </li>
+                                <!--
                                 <li>
-                                    <a href="../user/system-status.html">
+                                    <a href="index4.html">
                                         <i class="fas fa-tachometer-alt"></i>System Status</a>
                                 </li>
+                            -->
                             </ul>
                         </li>
 
-                         <li class="has-sub">
+                         <li class=" has-sub">
                             <a class="js-arrow" href="#">
-                                <i class="fas fa-tachometer-alt"></i>Phrasetext
+                                <i class="fas fa-quote-left"></i>Phrasetext
                                 <span class="arrow">
                                     <i class="fas fa-angle-down"></i>
                                 </span>
@@ -797,9 +827,10 @@ $timeStamp = date('Y-M-D H:i:s', substr($date, 0, 8));
                                
                             </ul>
                         </li>
+
                          <li class=" has-sub">
                             <a class="js-arrow" href="#">
-                                <i class="fas fa-tachometer-alt"></i>Label
+                                <i class="fas fa-tag"></i>Label
                                 <span class="arrow">
                                     <i class="fas fa-angle-down"></i>
                                 </span>
@@ -816,9 +847,10 @@ $timeStamp = date('Y-M-D H:i:s', substr($date, 0, 8));
                                 
                             </ul>
                         </li>
-                        <!--<li class=" has-sub">
+                        <!--
+                        <li class=" has-sub">
                             <a class="js-arrow" href="#">
-                                <i class="fas fa-tachometer-alt"></i>Property Tree
+                                <i class="fas fa-tree"></i>Property Tree
                                 <span class="arrow">
                                     <i class="fas fa-angle-down"></i>
                                 </span>
@@ -826,130 +858,131 @@ $timeStamp = date('Y-M-D H:i:s', substr($date, 0, 8));
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
                                 <li>
                                     <a href="index.html">
-                                        <i class="fas fa-tachometer-alt"></i>List Trees</a>
+                                        <i class="fas fa-list-ol"></i>List Trees</a>
                                 </li>
                                 <li>
                                     <a href="index2.html">
-                                        <i class="fas fa-tachometer-alt"></i>Property Tree Import</a>
+                                        <i class="fas fa-arrow-circle-down"></i>Property Tree Import</a>
                                 </li>
                                 <li>
                                     <a href="index3.html">
-                                        <i class="fas fa-tachometer-alt"></i>Property Tree Export</a>
+                                        <i class="fas fa-arrow-circle-up"></i>Property Tree Export</a>
                                 </li>
                                 <li>
                                     <a href="index4.html">
-                                        <i class="fas fa-tachometer-alt"></i>List Phrasesets</a>
+                                        <i class="fas fa-clipboard-list"></i>List Phrasesets</a>
                                 </li>
                                 <li>
                                     <a href="index4.html">
-                                        <i class="fas fa-tachometer-alt"></i>Copy Phraseset</a>
+                                        <i class="far fa-copy"></i>Copy Phraseset</a>
                                 </li>
                                 <li>
                                     <a href="index4.html">
-                                        <i class="fas fa-tachometer-alt"></i>Phraseset Import</a>
+                                        <i class="fas fa-arrow-circle-down"></i>Phraseset Import</a>
                                 </li>
                                 <li>
                                     <a href="index4.html">
-                                        <i class="fas fa-tachometer-alt"></i>Phraseset Export</a>
+                                        <i class="fas fa-arrow-circle-up"></i>Phraseset Export</a>
                                 </li>
                                 <li>
                                     <a href="index4.html">
-                                        <i class="fas fa-tachometer-alt"></i>List Properties</a>
+                                        <i class="fas fa-list-ul"></i>List Properties</a>
                                 </li>
                                 <li>
                                     <a href="index4.html">
-                                        <i class="fas fa-tachometer-alt"></i>New Property</a>
+                                        <i class="far fa-file"></i>New Property</a>
                                 </li>
                                 <li>
                                     <a href="index4.html">
-                                        <i class="fas fa-tachometer-alt"></i>List Classes</a>
+                                        <i class="far fa-list-alt"></i>List Classes</a>
                                 </li>
                                 <li>
                                     <a href="index4.html">
-                                        <i class="fas fa-tachometer-alt"></i>List Attributes</a>
+                                        <i class="fas fa-th-list"></i>List Attributes</a>
                                 </li>
                                
                             </ul>
-                        </li> -->
-
-                        <li class="has-sub">
+                        </li>
+-->
+                        <li class="active has-sub">
                             <a class="js-arrow" href="#">
-                                <i class="fas fa-tachometer-alt"></i>Language
+                                <i class="fas fa-language"></i>Language
                                 <span class="arrow">
                                     <i class="fas fa-angle-down"></i>
                                 </span>
                             </a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
                                 <li>
-                                    <a href="../language/language_landing.html">
+                                    <a href="language_landing.html">
                                         <i class="fas fa-list-ol"></i>List Languages</a>
                                 </li>
                                 <li>
-                                    <a href="../language/new_language.html">
+                                    <a href="new_language.html">
                                         <i class="far fa-plus-square"></i>New Language</a>
                                 </li>
                                 <li>
-                                    <a href="../language/list_language_codes.html">
+                                    <a href="list_language_codes.html">
                                         <i class="far fa-list-alt"></i>List Language Codes</a>
                                 </li>
                                 <li>
-                                    <a href="../language/new_language_code.html">
+                                    <a href="new_language_code.html">
                                         <i class="fas fa-folder-plus"></i>New Language Code</a>
                                 </li>
                                 <li>
-                                    <a href="../language/copy_language_code.html">
+                                    <a href="copy_language_codes.html">
                                         <i class="far fa-clone"></i>Copy Language Codes</a>
                                 </li>
+                                
+                               
                             </ul>
                         </li>
-                        <li class="active has-sub">
+                        <li class=" has-sub">
                             <a class="js-arrow" href="#">
-                                <i class="fas fa-tachometer-alt"></i>Admin
+                                <i class="fas fa-user-secret"></i>Admin
                                 <span class="arrow">
                                     <i class="fas fa-angle-down"></i>
                                 </span>
                             </a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
-                                 <li>
-                                    <a href="admin_landing.php">
+                                <li>
+                                    <a href="../admin/admin_landing.php">
                                         <i class="far fa-calendar-alt"></i>Translations per month and user</a>
                                 </li>
                                 <li>
-                                    <a href="admin_not_translated.html">
+                                    <a href="../admin/admin_not_translated.html">
                                         <i class="fas fa-exclamation"></i>Missing Translations of Languagetexts</a>
                                 </li>
                                 <li>
-                                    <a href="admin_country_not_translated.html">
+                                    <a href="../admin/admin_country_not_translated.html">
                                         <i class="far fa-flag"></i>Missing Translations of Countrynames</a>
                                 </li>
                                 <li>
-                                    <a href="admin_company_list.html">
+                                    <a href="../admin/admin_company_list.html">
                                         <i class="fas fa-list"></i>List of Companies</a>
                                 </li>
                                 <li>
-                                    <a href="admin_new_company.html">
+                                    <a href="../admin/admin_new_company.html">
                                         <i class="far fa-plus-square"></i>New Company</a>
                                 </li>
                                 <li>
-                                    <a href="admin_credit_point.html">
+                                    <a href="../admin/admin_credit_point.html">
                                         <i class="fas fa-coins"></i>List Creditpoints</a>
                                 </li>
                                 
                                
                             </ul>
                         </li>
-
-                        <li class=" has-sub">
+                         <li class=" has-sub">
                             <a class="js-arrow" href="#">
-                                <i class="fas fa-tachometer-alt"></i>Help
+                                <i class="fas fa-question-circle"></i>Help
                                 <span class="arrow">
                                     <i class="fas fa-angle-down"></i>
                                 </span>
                             </a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
-                                 <li>
+                                <li>
                                     <a href="../help/help_landing.html">
-                                        <i class="far fa-file-alt"></i>Web Navigation</a>
+                                        <i class="far fa-map-marker-alt"></i>Web Navigation</a>
                                 </li>
                                 <li>
                                     <a href="../help/help-user.html">
@@ -967,6 +1000,7 @@ $timeStamp = date('Y-M-D H:i:s', substr($date, 0, 8));
                                     <a href="../help/help-import-export.html">
                                         <i class="fas fa-arrows-alt-h"></i>Import and Export</a>
                                 </li>
+                               
                                 <li>
                                     <a href="#">
                                         <i class="fas fa-tag"></i>Labels</a>
@@ -1106,12 +1140,12 @@ $timeStamp = date('Y-M-D H:i:s', substr($date, 0, 8));
                                         <span class="au-breadcrumb-span">You are here:</span>
                                         <ul class="list-unstyled list-inline au-breadcrumb__list">
                                             <li class="list-inline-item active">
-                                                <a href="#">Admin</a>
+                                                <a href="#">Language</a>
                                             </li>
                                             <li class="list-inline-item seprate">
                                                 <span>/</span>
                                             </li>
-                                            <li class="list-inline-item">Translations per month and user</li>
+                                            <li class="list-inline-item">List Language Codes</li>
                                         </ul>
                                     </div>
                                     <!--
@@ -1129,91 +1163,59 @@ $timeStamp = date('Y-M-D H:i:s', substr($date, 0, 8));
 
             <!-- Container Start -->
             <center>
-                           
                 <div class="col-lg-12">
                                 <div class="card">
                                     <div class="card-header">
-                                        <strong>Translations per month and user </strong>
+                                        <strong>Company Selection </strong>
                                    </div>
                                     <div class="card-body card-block">
-                                        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST" class="form-horizontal">
-                                            <?php
-                                            $pt = new Phrasetool();
-
-                                            ?>
-
-
-                                            <div class="row form-group">
+                                        <form action="" method="post" class="form-horizontal">
+                                        <div class="row form-group">
                                                 <div class="col col-md-12">
                                                     <br>
-                                                    Select Month and Year.<i style="color:red;">*</i><br>
+                                                    Company<i style="color: red;">*</i> <br>
                                                     <div class="btn-group">
                                                         <div class="col-12 col-md-12">
-                                                                <select name="monthSelected" id="select" class="form-control">
-                                                                    <option value="1">January</option>
-                                                                    <option value="2">February</option>
-                                                                    <option value="3">March</option>
-                                                                    <option value="4">April</option>
-                                                                    <option value="5">May</option>
-                                                                    <option value="6">June</option>
-                                                                    <option value="7">July</option>
-                                                                    <option value="8">August</option>
-                                                                    <option value="9">September</option>
-                                                                    <option value="10">October</option>
-                                                                    <option value="11">November</option>
-                                                                    <option value="12">December</option>
+                                                                <select name="select" id="select" class="form-control">
+                                                                    <option value="1">Rimpido GMBH</option>
+                                                                    <option value="2">Docogan</option>
                                                                 </select>
-                                                                <br>
                                                         </div>
                                                     </div>
-                                                    <div class="btn-group">
-                                                            <div class="col-12 col-md-12">
-                                                                <select name="daySelected" id="select" class="form-control">
-                                                                        <?php
-
-                                                                    for ($x = 2012; $x < 2040; $x++){
-                                                                        echo "<option value=". $x .">". $x ."</option>";
-                                                                    }
-                                                                        ?>
-                                                                </select>
-                                                                <br>
-                                                            </div>
-                                                    </div>
-                                                    <br>
-                                                        <input type="hidden" name="form_submitted"/>
-                                                        <input type="submit" class="btn btn-success btn-sm"></input>
-                                                        <br>
-                                                    <br>
-                                            </form>
-                                            <br>
-
-                                        <div class = "task-progress"><br>
+                                                </div>
+                                        </div>
+                                        </form>
+                                        <button type="submit" class="btn btn-success btn-sm">
+                                                        <i class="fa fa-dot-circle-o"></i> Submit
+                                        </button>                        
+                                    </div>
+                                    <div class="card-header">
+                                        <strong>Language Code</strong>
+                                   </div>
+                                   <div class="card-body card-block">
+                                       <div class = "task-progress">
                                         <div class="table-responsive">
                                         <table class="table table-hover">
                                         <thead>
                                         <tr>
-                                        <th>Prename</th>
-                                        <th>Surname</th>
-                                        <th>Translations</th>
-                                        <th>Company</th>
+                                        <th>Produktname</th>
+                                        <th>Sprache 1</th>
+                                        <th>Sprache 2</th>
                                         <th>Actions</th>
                                         </tr>
                                         </thead>
                                         <tbody>
                                         <?php
+                                            $pt = new Phrasetool();
 
-
-                                            $rowCount = $pt->returnTranslationsPerMonth(); //return number of rows in db
-                                                $rowPerPage = 15; //number of rows per page
+                                                $rowCount = $pt->returnLanguageCode(); //return number of rows in db
+                                                $rowPerPage = 25; //number of rows per page
                                                 $numberOfPages = ceil($rowCount / $rowPerPage); //number of pages
                                                 $startingLimitNumber = ($page - 1) * $rowPerPage; //limit number
 
-                                            if (isset($_POST['form-submitted']))
-                                            {
-                                                $rows = $pt->viewTranslationsPerMonthDate($rowPerPage, $startingLimitNumber, $timeStamp);
-                                            }elseif (!isset($_POST['form-submitted'])) {
-                                                $rows = $pt->viewTranslationsPerMonth($rowPerPage, $startingLimitNumber, $date);
-                                            }
+
+                                            $rows = $pt->displayLanguageCode($rowPerPage,$startingLimitNumber);
+
                                             foreach ($rows as $row) 
                                             {
 
@@ -1221,11 +1223,10 @@ $timeStamp = date('Y-M-D H:i:s', substr($date, 0, 8));
 
 
                                         <tr>
-                                        <th scope="row"><?php echo $row['firstName']; ?></th>
-                                        <td><?php echo $row['lastName']; ?></td>
-                                        <td><?php echo $row['translationCount']; ?></td>
+                                        <th scope="row"><?php echo $row['languageName']; ?></th>
                                         <td><?php echo $row['companyName']; ?></td>
-                                        <td><a class="btn btn-sm btn-outline-primary" href="edit_phrasehead.php?id=<?php echo $row['firma_id']; ?>"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>&nbsp;Edit</a>&nbsp;<a  class="btn btn-sm btn-outline-success" href=""><i class="fa fa-file-text-o" aria-hidden="true"></i>&nbsp;View</a></td>
+                                        <td><?php echo $row['languageCode']; ?></td>
+                                        <td><a class="btn btn-sm btn-outline-primary" href="edit_phrasehead.php?id=<?php echo $row['firma_id']; ?>"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>&nbsp;Edit</a>&nbsp;<a class="btn btn-sm btn-outline-danger" href=""><i class="fa fa-trash-o" aria-hidden="true"></i>&nbsp;Delete</a>&nbsp;<a  class="btn btn-sm btn-outline-success" href=""><i class="fa fa-file-text-o" aria-hidden="true"></i>&nbsp;View</a></td>
                                         </tr>
 
                                         <?php
@@ -1236,36 +1237,28 @@ $timeStamp = date('Y-M-D H:i:s', substr($date, 0, 8));
                                         </tbody>
                                         </table>
                                         </div>
-                                    </div>
+                                        </div>
                                         <div class="col-md-12">
-                                             <div class="text-center">
-                                                <ul class="pagination pagination-lg">
-                                                <?php
+                                         <div class="text-center">
+                                            <ul class="pagination pagination-lg">
+                                            <?php
 
-                                                    for($page = 1; $page <= $numberOfPages; $page++)
-                                                    {
-                                                        echo '<li><a href = "admin_landing.php?page='.$page.'">'. $page .'</a></li>';
-                                                    }
-                                                ?>
-                                            </ul>
-                                            </div>
-                                            </div>
-
-                                                </div>
-                                            </div>
-                                        <br>
-                                     
+                                                for($page = 1; $page <= $numberOfPages; $page++)
+                                                {
+                                                    echo '<li><a href = "list_language_codes.php?page='.$page.'">'. $page .'</a></li>';
+                                                }
+                                        ?>
+                                    </ul>
                                     </div>
-                                        
+                                    </div>
+                                   </div>
+
                                 </div>
-                            </div>
-
-
-
-
+                </div>
             </center>
 
-                                <!-- MODAL -->
+
+            <!-- MODAL -->
 
                                 <div class="modal fade" id="deletePhraseHead" tabindex="-1" role="dialog" aria-labelledby="smallmodalLabel" aria-hidden="true">
                                      <div class="modal-dialog modal-sm" role="document">
@@ -1278,7 +1271,7 @@ $timeStamp = date('Y-M-D H:i:s', substr($date, 0, 8));
                                            </div>
                                 <div class="modal-body">
                                     <p>
-                                        Are you sure you want to delete this Translation?
+                                        Are you sure you want to delete this Language?
                                     </p>
                                 </div>
                                 <div class="modal-footer">
@@ -1288,7 +1281,6 @@ $timeStamp = date('Y-M-D H:i:s', substr($date, 0, 8));
                                         </div>
                                     </div>
                                 </div>
-
 
 
             <!-- 

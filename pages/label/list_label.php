@@ -1,21 +1,3 @@
-<?php
-
-function __autoload($class)
-{
-  require_once "../../classes/$class.php";
-}
-
-if(!isset($_GET['page']))
-{
-     $page = 1;
-}else
-{
-    $page = $_GET['page']; 
-}
-
-?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 <style type="text/css">
@@ -93,7 +75,7 @@ color: white;
                 </div>
                 <nav class="navbar-sidebar2">
                     <ul class="list-unstyled navbar__list">
-                        <li class=" has-sub">
+                         <li class=" has-sub">
                             <a class="js-arrow" href="#">
                                 <i class="fas fa-user"></i>User
                                 <span class="arrow">
@@ -415,7 +397,7 @@ color: white;
                                     <a href="../help/help-import-export.html">
                                         <i class="fas fa-arrows-alt-h"></i>Import and Export</a>
                                 </li>
-                                
+                               
                                 <li>
                                     <a href="#">
                                         <i class="fas fa-tag"></i>Labels</a>
@@ -996,7 +978,7 @@ color: white;
                                     <a href="../help/help-import-export.html">
                                         <i class="fas fa-arrows-alt-h"></i>Import and Export</a>
                                 </li>
-                             
+                               
                                 <li>
                                     <a href="#">
                                         <i class="fas fa-tag"></i>Labels</a>
@@ -1184,9 +1166,7 @@ color: white;
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-xl-12">
-                                <form class="form-horizontal" action="edit_label.php" method="POST">
                                 <div class = "task-progress">
-                                    <div class = "task-progress">
                                     <div class="table-responsive">
                                      <table class="table table-hover">
                                         <thead>
@@ -1199,92 +1179,35 @@ color: white;
                                           </tr>
                                         </thead>
                                         <tbody>
-                                            <?php
-                                                $pt = new Phrasetool();
-                                                $rowCount = $pt->returnLabelRowCount();
-                                                $rowPerPage = 25;
-                                                $numberOfPages = ceil($rowCount / $rowPerPage);
-                                                $startingLimitNumber = ($page - 1) * $rowPerPage;
-
-                                                $rows = $pt->displayListLabel($rowPerPage,$startingLimitNumber);
-                                                foreach ($rows as $row) 
-                                                {
-
-
-                                            ?>
-
                                           <tr>
-                                            <td><?php echo $row['produktname']; ?></td>
-                                            <td><?php echo $row['sprache1']; ?></td>
-                                            <td><?php echo $row['sprache2']; ?></td>
-                                            <td><?php echo $row['inhalt_sprache_1']; ?></td>
+                                            <td>Data 1</td>
+                                            <td>Data 2</td>
+                                            <td>Data 3</td>
+                                            <td>Data 4</td>
                                             <td>
-                                                <?php
-                                                    echo "<button type ='submit' class='btn btn-sm btn-outline-warning' name= 'editPhrasecatalogue' id = 'editPhrasecatalog' value =".$row['u1']."><i class='fa fa-file-text-o' aria-hidden='true' onclick=\"this.style.display='none'\"></i>&nbsp;Edit</button>";
-                                                ?>
-                                                <button type="button" class='btn btn-sm btn-outline-primary'>View</button>
-                                                <button type="button" class='btn btn-sm btn-outline-primary'>Print</button>
-                                                <button type="button" class='btn btn-sm btn-outline-warning'>Edit</button>
-                                                <button type="button" class="btn btn-sm btn-outline-danger">Delete</button>
+
+                                                <button type="button" class="btn btn-warning btn-sm">View</button>
+                                                <button type="button" class="btn btn-warning btn-sm">Print</button>
+                                                <button type="button" class="btn btn-warning btn-sm">Edit</button>
+                                                <button type="button" class="btn btn-warning btn-sm">Delete</button>
                                             </td>
                                           </tr>
-                                        <?php
-                                            }
-
-                                        ?> 
+                                          
                                         </tbody>
                                       </table>
                                     </div>
-                                    
-                                </div>
-                                <!-- DECLARE PAGE LINK -->
-                                <div class = "col-md-12">
-                                    <div class="text-center">
 
-                                        
+                                    <div class="pagination" style="">
+                                        <a href="#"><<</a>
+                                        <a href="#">1</a>
+                                        <a href="#">2</a>
+                                        <a href="#">3</a>
+                                        <a href="#">4</a>
+                                        <a href="#">5</a>
+                                        <a href="#">>></a>
                                     </div>
+
                                 </div>
-
-                                <div class="col-md-12">
-                                     <?php
-
-                                            $viewPageNumber = 10;
-
-                                            echo "<ul class='pagination'>";
-                                            if ($page > 0)
-                                            {
-                                                echo "<li><a href='list_label.php?page=".($page-1)."' class='button'>Previous</a></li>"; 
-                                            } else
-                                            {
-                                                echo "<li><a href='list_label.php?page=".$page."' class='button'>Previous</a></li>";
-                                            }
-                                             
-
-                                            for($pageNumber = 1; $pageNumber <= $numberOfPages; $pageNumber++)
-                                            {
-                                                
-                                                if ($pageNumber <= $viewPageNumber)
-                                                {
-                                                    echo '<li><a href = "list_label.php?page='.$pageNumber.'">'. $pageNumber .'</a></li>';
-                                                }
-                                                
-                                            }  
-
-                                            if ($page < $numberOfPages)
-                                            {
-                                                echo "<li><a href='list_label.php?page=".($page+1)."' class='button'>NEXT</a></li>";
-                                            } else
-                                            {
-                                                echo "<li><a href='list_label.php?page=".$page."' class='button'>NEXT</a></li>";
-                                            }
-
-                                            
-                                            echo "</ul>";   
-
-                                        ?>
-                                    </div>
-                                </div>
-                            </div>
                             </div>     
                             </div>
                         </div>
