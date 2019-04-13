@@ -11,7 +11,7 @@ class Db
 	{
 		//connection
 		try {
-    		$conn = new PDO("mysql:host=localhost;dbname=db538199618", 'root', 'rimpido');
+    		$conn = new PDO("mysql:host=localhost;dbname=db538199618", 'root', '');
     // set the PDO error mode to exception
     		$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     		//echo "Connected successfully"; 

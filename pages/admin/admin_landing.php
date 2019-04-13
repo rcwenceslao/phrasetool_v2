@@ -1,16 +1,3 @@
-<?php
-
-
-function __autoload($class)
-{
-  require_once "../../classes/$class.php";
-}
-
-
-
-?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -1155,27 +1142,21 @@ function __autoload($class)
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        <?php
-                                            $pt = new Phrasetool();
-                                            $rows = $pt->viewTranslationsPerMonth();
-                                            foreach ($rows as $row) 
-                                            {
-
-                                        ?>
-
-
                                         <tr>
-                                        <th scope="row"><?php echo $row['firstName']; ?></th>
-                                        <td><?php echo $row['lastName']; ?></td>
-                                        <td><?php echo $row['translationCount']; ?></td>
-                                        <td><?php echo $row['companyName']; ?></td>
-                                        <td><a class="btn btn-sm btn-outline-primary" href="edit_phrasehead.php?id=<?php echo $row['firma_id']; ?>"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>&nbsp;Edit</a>&nbsp;<a  class="btn btn-sm btn-outline-success" href="admin_view_translations_per_month.php?read=<?php echo $row['benutzer_id']; ?>"><i class="fa fa-file-text-o" aria-hidden="true"></i>&nbsp;View</a></td>
+                                        <td>Data 1</td>
+                                        <td>Data 2</td>
+                                        <td>Data 3</td>
+                                        <td>Data 4</td>
+                                        <td>
+
+                                        
+                                        <button type="button" class="btn btn-warning btn-sm" style="margin-right:0.3em;"><a href="admin_view_translations_per_month.html" style="color: black;"> View</button>
+                                        <button type="button" class="btn btn-warning btn-sm"><a href="../user/edit-profile.html" style="color: black;">Edit</a></button>
+                                        
+
+                                       
+                                        </td>
                                         </tr>
-
-                                        <?php
-                                            }
-
-                                        ?>
 
                                         </tbody>
                                         </table>

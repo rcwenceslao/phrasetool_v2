@@ -1,40 +1,3 @@
-<?php
-
-function __autoload($class)
-{
-  require_once "../../classes/$class.php";
-}
-
-function test_input($data) {
-  $data = trim($data);
-  $data = stripslashes($data);
-  $data = htmlspecialchars($data);
-  return $data;
-}
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
-
-
-  $phrasegroup = test_input($_POST["phrasegroup"]);
-  $company = test_input($_POST["company"]);
- 
-
-   $phrasegroup_fields = [   
-            'phrasengruppe'=>$phrasegroup,
-            'firma_id'=>$company
-
-        ];
-        
-         $pt = new Phrasetool();
-       $pt->insertPhrasegroup($phrasegroup_fields);
-
-}
-
-
-?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -72,6 +35,28 @@ color: white;
     }  
 
 </script>
+
+
+<?php
+//define variables and set to empty values
+$phraseGroup, $company = "";
+
+if ($_SERVER["REQUEST_METHOD"] == "POST")
+{
+    $phraseGroup = test_input($_POST["phraseGroup"]);
+}
+
+function test_input($data)
+{
+    $data = trim ($data);
+    $data = stripcslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+}
+
+?>
+
+
 <head>
     <!-- Required meta tags-->
     <meta charset="UTF-8">
@@ -1219,7 +1204,7 @@ color: white;
                         <div class="row">
                             <div class="col-xl-12">
                                 <div class = "task-progress">
-                                    <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+                                    <form class="form-horizontal" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
                                         <!-- THIS FIELD MUST BE SET (INDICATOR MUST BE SET)-->
                                         <div class="form-group">
                                           <label class="control-label col-sm-3" for="phrasegroup"><b>Phrasegroup:</b><font style="color: red;">*</font></label>
@@ -1233,28 +1218,22 @@ color: white;
                                           <label class="control-label col-sm-2" for="company"><b>Company:</b><font style="color: red;">*</font></label>
                                           <div class="col-sm-12">          
                                             <select class= "form-control" name="company" id="company" required>
-                                              
-                                                        <?php
-                                                             $pt = new Phrasetool();
-                                                                $rows = $pt->selectCompany();
-                                                                     foreach ($rows as $row) 
-                                                                        {
-                                                         ?>
-                                                                     <option  value="<?php echo $row['company_id']; ?>"><?php echo $row['company']; ?> </option>
-
-
-                                                          <?php
-                                                                     }
-
-
-                                                          ?>
+                                                <option value="rimpidoGMBH">Rimpido GmbH</option>
+                                                <option value="DocOga">DocOga</option>
+                                                <option value="privat">Privat</option>
+                                                <option value="sigmaAldrich">Sigma-Aldrich</option>
+                                                <option value="krka">Krka</option>
+                                                <option value="sculkeMayrGMBH">Schulke & Mayr GmbH</option>
+                                                <option value="compoExpert">Compo-Expert</option>
+                                                <option value="compoConsumer">Compo-Consumer</option>
+                                                <option value="LonzaAG">Lonza AG</option>
                                             </select>
                                           </div>
                                           </div>
                                           <div class="form-group">
                                         <center> 
                                           <div class="col-sm-offset-2 col-sm-12">
-                                            <button type="submit" class="btn btn-warning" name="addPhrasegroup">Submit</button>
+                                            <button type="submit" class="btn btn-warning">Submit</button>
                                           </div>
                                         </center>
                                         </div>

@@ -10,7 +10,7 @@
     <meta name="keywords" content="">
 
     <!-- Title Page-->
-    <title>Phrasetext ~ Phrasetool by Rimpido</title>
+    <title>New Label</title>
 
     <!-- Fontfaces CSS-->
     <link href="../../css/font-face.css" rel="stylesheet" media="all">
@@ -33,27 +33,6 @@
 
     <!-- Main CSS-->
     <link href="../../css/theme.css" rel="stylesheet" media="all">
-
-    <style type="text/css">
-
-        .pagination a {
-          color: black;
-          float: left;
-          padding: 8px 16px;
-          text-decoration: none;
-          transition: background-color .3s;
-        }
-
-        /* Style the active/current link */
-        .pagination a.active {
-          background-color: dodgerblue;
-          color: white;
-        }
-
-        /* Add a grey background color on mouse-over */
-        .pagination a:hover:not(.active) {background-color: #ddd;}
-    
-    </style>
 
 </head>
 
@@ -113,7 +92,7 @@
                             </ul>
                         </li>
 
-                         <li class="active has-sub">
+                         <li class=" has-sub">
                             <a class="js-arrow" href="#">
                                 <i class="fas fa-quote-left"></i>Phrasetext
                                 <span class="arrow">
@@ -122,19 +101,19 @@
                             </a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
                                 <li>
-                                    <a href="phrasetext_landing.html">
+                                    <a href="../phrasetext/phrasetext_landing.html">
                                         <i class="fas fa-search"></i>Search Phrasetext</a>
                                 </li>
                                 <li>
-                                    <a href="missing_phrasetext.html">
+                                    <a href="../phrasetext/missing_phrasetext.html">
                                         <i class="fas fa-exclamation-circle"></i>Missing Translation</a>
                                 </li>
                                 <li>
-                                    <a href="list_phraseheads.html">
+                                    <a href="../phrasetext/list_phraseheads.html">
                                         <i class="fas fa-list-ol"></i>List Phraseheads</a>
                                 </li>
                                 <li>
-                                    <a href="new_phrasehead.html">
+                                    <a href="../phrasetext/new_phrasehead.html">
                                         <i class="far fa-plus-square"></i>New Phrasehead</a>
                                 </li>
                                
@@ -226,7 +205,7 @@
                             </ul>
                         </li>
 
-                         <li class=" has-sub">
+                         <li class="active has-sub">
                             <a class="js-arrow" href="#">
                                 <i class="fas fa-tag"></i>Label
                                 <span class="arrow">
@@ -235,11 +214,11 @@
                             </a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
                                 <li>
-                                    <a href="../label/list_label.html">
+                                    <a href="list_label.html">
                                         <i class="fas fa-list"></i>List Labels</a>
                                 </li>
                                 <li>
-                                    <a href="../label/new_label.html">
+                                    <a href="new_label.html">
                                         <i class="fas fa-plus"></i>New Label</a>
                                 </li>
                                 
@@ -398,7 +377,7 @@
                                     <a href="../help/help-import-export.html">
                                         <i class="fas fa-arrows-alt-h"></i>Import and Export</a>
                                 </li>
-                               
+                                
                                 <li>
                                     <a href="#">
                                         <i class="fas fa-tag"></i>Labels</a>
@@ -657,7 +636,7 @@
                     </div>
                     <nav class="navbar-sidebar2">
                     <ul class="list-unstyled navbar__list">
-                        <li class=" has-sub">
+                       <li class=" has-sub">
                             <a class="js-arrow" href="#">
                                 <i class="fas fa-user"></i>User
                                 <span class="arrow">
@@ -694,7 +673,7 @@
                             </ul>
                         </li>
 
-                         <li class="active has-sub">
+                         <li class=" has-sub">
                             <a class="js-arrow" href="#">
                                 <i class="fas fa-quote-left"></i>Phrasetext
                                 <span class="arrow">
@@ -703,19 +682,19 @@
                             </a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
                                 <li>
-                                    <a href="phrasetext_landing.html">
+                                    <a href="../phrasetext/phrasetext_landing.html">
                                         <i class="fas fa-search"></i>Search Phrasetext</a>
                                 </li>
                                 <li>
-                                    <a href="missing_phrasetext.html">
+                                    <a href="../phrasetext/missing_phrasetext.html">
                                         <i class="fas fa-exclamation-circle"></i>Missing Translation</a>
                                 </li>
                                 <li>
-                                    <a href="list_phraseheads.html">
+                                    <a href="../phrasetext/list_phraseheads.html">
                                         <i class="fas fa-list-ol"></i>List Phraseheads</a>
                                 </li>
                                 <li>
-                                    <a href="new_phrasehead.html">
+                                    <a href="../phrasetext/new_phrasehead.html">
                                         <i class="far fa-plus-square"></i>New Phrasehead</a>
                                 </li>
                                
@@ -807,7 +786,7 @@
                             </ul>
                         </li>
 
-                         <li class=" has-sub">
+                         <li class="active has-sub">
                             <a class="js-arrow" href="#">
                                 <i class="fas fa-tag"></i>Label
                                 <span class="arrow">
@@ -816,11 +795,11 @@
                             </a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
                                 <li>
-                                    <a href="../label/list_label.html">
+                                    <a href="list_label.html">
                                         <i class="fas fa-list"></i>List Labels</a>
                                 </li>
                                 <li>
-                                    <a href="../label/new_label.html">
+                                    <a href="new_label.html">
                                         <i class="fas fa-plus"></i>New Label</a>
                                 </li>
                                 
@@ -979,7 +958,7 @@
                                     <a href="../help/help-import-export.html">
                                         <i class="fas fa-arrows-alt-h"></i>Import and Export</a>
                                 </li>
-                               
+                                
                                 <li>
                                     <a href="#">
                                         <i class="fas fa-tag"></i>Labels</a>
@@ -1119,12 +1098,12 @@
                                         <span class="au-breadcrumb-span">You are here:</span>
                                         <ul class="list-unstyled list-inline au-breadcrumb__list">
                                             <li class="list-inline-item active">
-                                                <a href="#">Phrasetext</a>
+                                                <a href="#">Label</a>
                                             </li>
                                             <li class="list-inline-item seprate">
                                                 <span>/</span>
                                             </li>
-                                            <li class="list-inline-item">Edit Phrasehead</li>
+                                            <li class="list-inline-item">New Label</li>
                                         </ul>
                                     </div>
                                     <!--
@@ -1137,214 +1116,169 @@
                     </div>
                 </div>
             </section>
-            <!-- END BREADCRUMB-->
 
+            <!-- START OF NEW LABEL DETAILS -->
 
-            <!-- Container Start -->
-            <center>
-                            <div class="col-lg-12">
-                                <div class="card">
-                                    <div class="card-header">
-                                        <strong>Edit Phrasehead </strong>
-                                   </div>
-                                    <div class="card-body card-block">
-                                        <form action="" method="post" class="form-horizontal">
-                                            <div class="row form-group">
-                                                <div class="col col-md-6">
-                                                    <br>
-                                                    Phrase Catalogue<i style="color:red;">*</i> <br>
-                                                    <div class="btn-group">
-                                                                <button type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle btn btn-warning">Please Select.</button>
-                                                            <div tabindex="-1" aria-hidden="true" role="menu" class="dropdown-menu">
-                                                                <button type="button" tabindex="0" class="dropdown-item">ACT01</button>
-                                                                <button type="button" tabindex="0" class="dropdown-item">ACT20</button>
-                                                                <button type="button" tabindex="0" class="dropdown-item">EPOS</button>
-                                                            </div>
-                                                    </div>
-                                                </div>
+            <!-- FIRST CONTAINER -->
+             <section class="statistic">
+                <div class="section__content section__content--p30">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-xl-12">
+                                <div class="statistic__item">
 
-                                                <div class="col col-md-6">
-                                                    <br>
-                                                    Select Phrasegroup<i style="color:red;">*</i><br>
-                                                    <div class="btn-group">
-                                                                <button type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle btn btn-warning">Please Select.</button>
-                                                            <div tabindex="-1" aria-hidden="true" role="menu" class="dropdown-menu">
-                                                                <button type="button" tabindex="0" class="dropdown-item">ACT01</button>
-                                                                <button type="button" tabindex="0" class="dropdown-item">ACT20</button>
-                                                                <button type="button" tabindex="0" class="dropdown-item">EPOS</button>
-                                                            </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="col col-md-12">
-                                                    <br>
-                                                    PhraseId <br>
-                                                    <div class="input-group">
-                                                        <input type="text" id="input1-group2" name="input1-group2" placeholder="Insert Phrase ID" class="form-control">
-                                                    </div>
-                                                </div>
-
-                                                <div class="col col-md-6">
-                                                    <div class="form-check">
-                                                        <div class="checkbox">
-                                                            <label for="checkbox1" class="form-check-label ">
-                                                                <BR><BR>
-                                                                <input type="checkbox" id="checkbox1" name="checkbox1" value="option1" class="form-check-input">Commercial Phrase<i style="color:red;">*</i><br>
-                                                            </label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col col-md-6">
-                                                    <div class="form-check">
-                                                        <div class="checkbox">
-                                                            <label for="checkbox1" class="form-check-label ">
-                                                                <BR><BR>
-                                                                <input type="checkbox" id="checkbox1" name="checkbox1" value="option1" class="form-check-input">Released Phrase<i style="color:red;">*</i><br>
-                                                                </label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="col col-md-6">
-                                                    <br>
-                                                    Euphrac Phrase <br>
-                                                    <div class="input-group">
-                                                        <input type="text" id="input1-group2" name="input1-group2" placeholder="Insert Phrase group" class="form-control">
-                                                    </div>
-                                                </div>
-
-                                                <div class="col col-md-6">
-                                                    <br>
-                                                    Structuure Code <br>
-                                                    <div class="input-group">
-                                                        <input type="text" id="input1-group2" name="input1-group2" placeholder="Insert Phrase group" class="form-control">
-                                                    </div>
-                                                </div>
-
-                                                <div class="col col-md-6">
-                                                    <br>
-                                                    Original Code <br>
-                                                    <div class="input-group">
-                                                        <input type="text" id="input1-group2" name="input1-group2" placeholder="Insert Phrase group" class="form-control">
-                                                    </div>
-                                                </div>
-
-                                                <div class="col col-md-12">
-                                                    <br>
-                                                    Timestamp<i style="color:red;">*</i><br>
-                                                    <div class="btn-group">
-                                                        <div class="col-12 col-md-12">
-                                                                <select name="select" id="select" class="form-control">
-                                                                    <option value="1">January</option>
-                                                                    <option value="2">February</option>
-                                                                    <option value="3">March</option>
-                                                                    <option value="4">April</option>
-                                                                    <option value="5">May</option>
-                                                                    <option value="6">June</option>
-                                                                    <option value="7">July</option>
-                                                                    <option value="8">August</option>
-                                                                    <option value="9">September</option>
-                                                                    <option value="10">October</option>
-                                                                    <option value="11">November</option>
-                                                                    <option value="12">December</option>
-                                                                </select>
-                                                        </div>
-                                                    </div>
-                                                    <div class="btn-group">
-                                                            <div class="col-12 col-md-12">
-                                                                <select name="select" id="select" class="form-control">
-                                                                    <?php
-
-                                                                    for ($x = 1; $x < 30; $x++){
-                                                                        echo "<option value=". $x .">". $x ."</option>";
-                                                                    }
-                                                                    ?>
-                                                                </select>
-                                                            </div>
-                                                    </div>
-                                                    <div class="btn-group">
-                                                            <div class="col-12 col-md-12">
-                                                                <select name="select" id="select" class="form-control">
-                                                                    <?php
-
-                                                                    for ($x = 1999; $x < 2040; $x++){
-                                                                        echo "<option value=". $x .">". $x ."</option>";
-                                                                    }
-                                                                    ?>
-                                                                </select>
-                                                            </div>
-                                                    </div>
-                                                    <div class="btn-group">
-                                                            <div class="col-12 col-md-12">
-                                                                <select name="select" id="select" class="form-control">
-                                                                    <?php
-
-                                                                    for ($x = 1; $x < 9; $x++){
-                                                                        echo "<option value=". $x .">". $x ."</option>";
-                                                                    }
-                                                                    ?>
-                                                                </select>
-                                                            </div>
-                                                    </div>
-                                                    <div class="btn-group">
-                                                            <div class="col-12 col-md-12">
-                                                                <select name="select" id="select" class="form-control">
-                                                                    <?php
-
-                                                                    for ($x = 00; $x < 60; $x++){
-                                                                        echo "<option value=". $x .">". $x ."</option>";
-                                                                    }
-                                                                    ?>
-                                                                </select>
-                                                            </div>
-                                                    </div>
-                                                    <div class="btn-group">
-                                                        <div class="col-12 col-md-12">
-                                                                <select name="select" id="select" class="form-control">
-                                                                    <option value="1">AM</option>
-                                                                    <option value="2">PM</option>
-                                                                </select>
-                                                        </div>
-                                                    </div>
-                                            </div>
-
-
-                                            </div>
-                                        </form>
-                                        <br>
-                                     <button type="submit" class="btn btn-success btn-sm">
-                                                <i class="fa fa-dot-circle-o"></i> Submit
-                                    </button>
-                                    </div>
-                                        
+                                    <h2>NEW LABEL</h2>
+                                    <br>
+                                    Input the following to create a new label.
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
-                                <!-- MODAL -->
+            <!-- SECOND CONTAINER -->
 
-                                <div class="modal fade" id="deletePhraseHead" tabindex="-1" role="dialog" aria-labelledby="smallmodalLabel" aria-hidden="true">
-                                     <div class="modal-dialog modal-sm" role="document">
-                                        <div class="modal-content">
-                                           <div class="modal-header">
-                                                 <h5 class="modal-title" id="smallmodalLabel">Confirm Deletion?</h5>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                           </div>
-                                <div class="modal-body">
-                                    <p>
-                                        Are you sure you want to delete this Phrase?
-                                    </p>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                                    <button type="button" class="btn btn-primary">Confirm</button>
-                                </div>
+            <section>
+                <div class="section__content section__content--p30">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-xl-12">
+                              
+                                <div class = "task-progress">
+                                      <form class="form-horizontal" action="#">
+                                        <!-- THIS FIELD MUST BE SET (INDICATOR MUST BE SET)-->
+                                        <div class="form-group">
+                                          <label class="control-label col-sm-3" for="produktname"><b>Produktname:</b></label>
+                                          <div class="col-sm-12">
+                                            <input type="text" class="form-control" id="produktname" placeholder="Enter Produktname" name="produktname">
+                                            <font size="2"> <i>Enter the name of the product here, i.e. the trademark </i> </font>
+                                          </div>
+
                                         </div>
-                                    </div>
+                                        <div class="form-group">
+                                          <label class="control-label col-sm-2" for="casnummer"><b>Cas-nummer:</b></label>
+                                          <div class="col-sm-12">          
+                                            <input type="text" class="form-control" id="casnummer" placeholder="Enter Cas-nummer" name="casnummer">
+                                            <font size="2"> <i>If the product has a CAS-number, please enter it here. </i> </font>
+                                          </div>
+                                        </div>
+                                         <div class="form-group">
+                                          <label class="control-label col-sm-2" for="einecsnummer"><b>Einecs-nummer:</b></label>
+                                          <div class="col-sm-12">          
+                                            <input type="text" class="form-control" id="einecsnummer" placeholder="Enter Einecs-nummer" name="einecsnummer">
+                                            <font size="2"> <i>If the product has an European EINECS-number also, please enter it here. </i> </font>
+                                          </div>
+                                        </div>
+                                         <div class="form-group">
+                                          <label class="control-label col-sm-2" for="unnummer"><b>Un-nummer:</b></label>
+                                          <div class="col-sm-12">          
+                                            <input type="text" class="form-control" id="unnummer" placeholder="Enter Un-nummer" name="unnummer">
+                                            <font size="2"> <i>If the product has a CAS-number, please enter it here. </i> </font>
+                                          </div>
+                                        </div>
+                                        <div class="form-group">
+                                          <label class="control-label col-sm-2" for="description"><b>Description:</b></label>
+                                          <div class="col-sm-12">  
+                                              <textarea rows = "5" cols = "50" name = "description" id= "description" class="form-control" placeholder="Enter description">
+                                                 </textarea>        
+                                                <font size="2"> <i>You may give a short despriction of your product here, e.g. usage of the product. This will be printed at top of the text field and should be given in both languages. </i> </font>
+                                            </div>
+                                        </div>
+                                        <!-- THIS FIELD MUST BE SET (INDICATOR MUST BE SET)-->
+                                        <div class="form-group">
+                                          <label class="control-label col-sm-2" for="unnummer"><b>Sprache 1:</b></label>
+                                          <div class="col-sm-12">          
+                                            <select class= "form-control">
+                                                <option value="">Value 1 from DB</option>
+                                            </select>
+                                            <font size="2"> <i>The label will be printed in the selected language as long as all elements are translated into this language.</i> </font>
+                                          </div>
+                                        </div>
+                                         <div class="form-group">
+                                          <label class="control-label col-sm-2" for="unnummer"><b>Inhalt Sprache 1:</b></label>
+                                          <div class="col-sm-12">          
+                                            <input type="text" class="form-control" id="sprache1" placeholder="Enter sprache" name="sprache1">
+                                            <font size="2"> <i>Enter a list of contained substances in the language given above (i.e. Language 1). E.g. Methanol, Ethanol and 2-Propanol </i> </font>
+                                          </div>
+                                        </div>
+                                        <!-- THIS FIELD MUST BE SET (INDICATOR MUST BE SET)-->
+                                        <div class="form-group">
+                                          <label class="control-label col-sm-2" for="unnummer"><b>Sprache 2:</b></label>
+                                          <div class="col-sm-12">          
+                                            <select class= "form-control">
+                                                <option value="">Value from DB</option>
+                                            </select>
+                                            <font size="2"> <i>You must use two different languages for the label. This one is the second one, which is printed below the first one.</i> </font>
+                                          </div>
+                                        </div>
+                                         <div class="form-group">
+                                          <label class="control-label col-sm-2" for="unnummer"><b>Inhalt Sprache 1:</b></label>
+                                          <div class="col-sm-12">          
+                                            <input type="text" class="form-control" id="sprache1" placeholder="Enter sprache" name="sprache1">
+                                            <font size="2"> <i>Enter a list of contained substances in the second language given above (i.e. Language 2). E.g. Methanol, Ethanol and iso-Propanol </i> </font>
+                                          </div>
+                                        </div>
+                                        <div class="form-group">
+                                          <label class="control-label col-sm-2" for="unnummer"><b>Signal Word:</b></label>
+                                          <div class="col-sm-12">          
+                                            <select class= "form-control">
+                                                <option value="nowarning">No Signal Word</option>
+                                                <option value="danger">Danger</option>
+                                                <option value="danger">Warning</option>
+                                            </select>
+                                          </div>
+                                        </div>
+                                        <!-- THIS FIELD MUST BE SET (INDICATOR MUST BE SET)-->
+                                         <div class="form-group">
+                                          <label class="control-label col-sm-2" for="unnummer"><b>Anzahl-symbole:</b></label>
+                                          <div class="col-sm-12">          
+                                            <select class= "form-control">
+                                                <option value="0hazard">No Hazard Symbol</option>
+                                                <option value="1hazard">One Hazard Symbol</option>
+                                                <option value="2hazard">Two Hazard Symbols</option>
+                                                <option value="3hazard">Three Hazard Symbols</option>
+                                                <option value="4hazard">Four Hazard Symbols</option>
+                                            </select>
+                                            <font size="2"> <i>Select the number of GHS hazard symbols here. According to your selection a number of fields will be visible. </i> </font>
+                                          </div>
+                                          </div>
+                                        <div class="form-group">
+                                          <label class="control-label col-sm-2" for="hphrasenkombiniert"><b>Hphrasen-kombiniert:</b></label>
+                                             <div class="col-sm-12">          
+                                                <input type="text" class="form-control" id="hphrasenkombiniert" placeholder="Enter hphrasenkombiniert" name="hphrasenkombiniert">
+                                                 <font size="2"> <i>Enter up to six GHS H-Phrase codes separated by comma (,) or semi-colon (;). The corresponding Phrases will be detected automatically and printed in the selected language. </i> </font>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                          <label class="control-label col-sm-2" for="hphrasenkombiniert"><b>Pphrasen-kombiniert:</b></label>
+                                            <div class="col-sm-12">          
+                                             <input type="text" class="form-control" id="hphrasenkombiniert" placeholder="Enter hphrasenkombiniert" name="hphrasenkombiniert">
+                                             <font size="2"> <i>Enter up to six GHS P-Phrase codes separated by comma (,) or semi-colon (;). The corresponding Phrases will be detected automatically and printed in the selected language. </i> </font>
+                                          </div>
+                                        </div>
+                                        <div class="form-group">
+                                        <center> 
+                                          <div class="col-sm-offset-2 col-sm-12">
+                                            <button type="submit" class="btn btn-warning">Submit</button>
+                                          </div>
+                                        </center>
+                                        </div>
+                                      </form>
                                 </div>
+                                
+                            </div>
+                                <!-- END TASK PROGRESS-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- END OF NEW LABEL DETAILS -->
 
 
+            <!-- END BREADCRUMB-->
 
             <!-- 
             <section class="statistic">

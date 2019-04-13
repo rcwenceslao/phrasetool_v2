@@ -14,7 +14,6 @@ if(isset($_GET['read']))
 
     $result = $pt->viewPhrasehead($uid);
 }
-
 ?>
 
 

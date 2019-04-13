@@ -1,108 +1,3 @@
-<?php
-
-
-function __autoload($class)
-{
-  require_once "../../classes/$class.php";
-}
-
-
-function test_input($data) {
-  $data = trim($data);
-  $data = stripslashes($data);
-  $data = htmlspecialchars($data);
-  return $data;
-}
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
-$temp="";
-
-
-  $katalogPin = test_input($_POST["katalogPin"]);
-  $catalogueDistributor = test_input($_POST["catalogueDistributor"]);
-  $catalogueVersion = test_input($_POST["catalogueVersion"]);
-  $catalogDateMonth = test_input($_POST['catalogDateMonth']);
-  $catalogDateDay = test_input($_POST['catalogDateDay']);
-  $catalogDateYear = test_input($_POST['catalogDateYear']);
-  $numberRange = test_input($_POST['numberRange']);
-
-if(strlen($catalogDateMonth) == '1' || strlen($catalogDateDay) == '1')
-{
-$temp = "0";
-}
-else
-{
-   $temp = "";
-}
-
-$catalogDateMonth = $temp.$catalogDateMonth;
-$catalogDateDay = $temp.$catalogDateDay;
-$catalogDate = $catalogDateYear.'-'.$catalogDateMonth.'-'.$catalogDateDay;
-
-
-
-
-$phrasecatalog_fields = [   
-            'katalog_pin'=>$katalogPin,
-            'katalog_distributor'=>$catalogueDistributor,
-            'katalog_version'=>$catalogueVersion,
-            'katalog_datum'=>$catalogDate,
-            'num_range'=>$numberRange    
-        ];
-       
-$pt = new Phrasetool();
-$pt->insertPhrasecatalogue($phrasecatalog_fields);
-
-//NOTE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-//wala pay firma_id
-
-}
-/*
-if(isset($_POST['addPhraseCatalog']))
-{
-$temp="";
-
-$katalogPin = $_POST['katalogPin'];
-$catalogueDistributor =$_POST['catalogueDistributor'];
-$catalogueVersion = ['catalogueVersion'];
-$catalogDateMonth = ['catalogDateMonth'];
-$catalogDateDay = ['catalogDateDay'];
-$catalogDateYear = ['catalogDateYear'];
-if(strlen($catalogDateMonth) == '1' || strlen($catalogDateDay) == '1')
-{
-$temp = "0";
-}
-else
-{
-   $temp = "";
-}
-
-$catalogDateMonth = $temp.$catalogDateMonth;
-
-
-
-$numberRange = ['numberRange'];
-
-
-$phrasecatalog_fields = [   
-            'katalog_pin'=>$katalogPin,
-            'katalog_distributor'=>$catalogueDistributor,
-            'katalog_version'=>$catalogueVersion,
-            'katalog_datum'=>$street3,
-            'num_range'=>$zipCode,
-            'firma_id'=>$city
-
-        ];
-
-}
-
-*/
-
-?>
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -1276,26 +1171,26 @@ color: white;
                             <div class="col-xl-12">
                                 <div class = "task-progress">
                                    
-                                   <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+                                   <form class="form-horizontal" action="#">
                                     <!-- THIS FIELD MUST BE SET -->
                                     <div class="form-group">
                                         <label class="control-label col-sm-3" for="katalogpin"><b>Katalog Pin:</b></label>
                                         <div class="col-sm-12">
-                                            <input type="text" class="form-control" id="katalogpin" placeholder="Enter katalog Pin" name="katalogPin">
+                                            <input type="text" class="form-control" id="katalogpin" placeholder="Enter katalog Pin" name="katalogpin">
                                         </div>
                                     </div>
                                     <!-- THIS FIELD MUST BE SET -->
                                     <div class="form-group">
                                         <label class="control-label col-sm-3" for="cataloguedistributor"><b>Catalogue distributor:</b></label>
                                         <div class="col-sm-12">
-                                            <input type="text" class="form-control" id="cataloguedistributor" placeholder="Enter Distributor" name="catalogueDistributor">
+                                            <input type="text" class="form-control" id="cataloguedistributor" placeholder="Enter Distributor" name="cataloguedistributor">
                                         </div>
                                     </div>
                                     <!-- THIS FIELD MUST BE SET -->
                                     <div class="form-group">
                                         <label class="control-label col-sm-3" for="catalogueversion"><b>Catalogue Version:</b></label>
                                         <div class="col-sm-12">
-                                            <input type="text" class="form-control" id="catalogueversion" placeholder="Enter Version" name="catalogueVersion">
+                                            <input type="text" class="form-control" id="catalogueversion" placeholder="Enter Version" name="catalogueversion">
                                         </div>
                                     </div>
                                     <!-- THIS FIELD MUST BE SET -->
@@ -1304,7 +1199,7 @@ color: white;
                                         <div class="col col-md-12">
                                                     <div class="btn-group">
                                                         <div class="col-12 col-md-12">
-                                                                <select id="select" class="form-control" name="catalogDateMonth">
+                                                                <select name="select" id="select" class="form-control">
                                                                     <option value="1">January</option>
                                                                     <option value="2">February</option>
                                                                     <option value="3">March</option>
@@ -1322,10 +1217,10 @@ color: white;
                                                     </div>
                                                     <div class="btn-group">
                                                             <div class="col-12 col-md-12">
-                                                                <select  id="select" class="form-control" name="catalogDateDay">
+                                                                <select name="select" id="select" class="form-control">
                                                                     <?php
 
-                                                                    for ($x = 1; $x < 32; $x++){
+                                                                    for ($x = 1; $x < 30; $x++){
                                                                         echo "<option value=". $x .">". $x ."</option>";
                                                                     }
                                                                     ?>
@@ -1334,7 +1229,7 @@ color: white;
                                                     </div>
                                                     <div class="btn-group">
                                                             <div class="col-12 col-md-12">
-                                                                <select  id="select" class="form-control" name="catalogDateYear">
+                                                                <select name="select" id="select" class="form-control">
                                                                     <?php
 
                                                                     for ($x = 1999; $x < 2040; $x++){
@@ -1350,7 +1245,7 @@ color: white;
                                     <div class="form-group">
                                         <label class="control-label col-sm-3" for="numberrange"><b>Number Range:</b></label>
                                         <div class="col-sm-12">
-                                            <input type="text" class="form-control" id="numberrange" placeholder="Enter Number Range" name="numberRange">
+                                            <input type="text" class="form-control" id="numberrange" placeholder="Enter Number Range" name="numberrange">
                                         </div>
                                     </div>
                                     
@@ -1360,7 +1255,7 @@ color: white;
                                             <div class="form-group">
                                         <center> 
                                           <div class="col-sm-offset-2 col-sm-12">
-                                            <button type="submit" class="btn btn-warning" name="addPhraseCatalog" >Add Phrasecatalog</button>
+                                            <button type="submit" class="btn btn-warning">Submit</button>
                                           </div>
                                         </center>
                                         </div>

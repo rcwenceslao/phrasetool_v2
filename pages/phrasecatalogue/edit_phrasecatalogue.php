@@ -1,16 +1,102 @@
+<?php 
+
+function __autoload($class)
+{
+    require_once "../../classes/$class.php";
+}
+
+function test_input($data) 
+{
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+}
+
+
+$pt = new Phrasetool();
+
+$katalogID = $katalogPin = $katalogDistributor = $katalogVersion = $katalogVersion = $katalogDateMonth = $katalogDateDay = $katalogDateYear = $numberRange = "";
+$temp = "";
+
+
+if(isset($_POST['editPhrasecatalogue']))
+{   
+
+    $phrasecatalogueID = $_POST['editPhrasecatalogue'];
+
+}
+
+
+if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit']))
+{
+        $katalogID = test_input($_POST["katalogID"]);
+        $katalogPin = test_input($_POST["katalogPin"]);
+        $katalogDistributor = test_input($_POST["katalogDistributor"]);
+        $katalogVersion = test_input($_POST["katalogVersion"]);
+        $numberRange = test_input($_POST["numberRange"]);
+        $katalogDateMonth = test_input($_POST["katalogMonth"]);
+        $katalogDateDay = test_input($_POST["katalogDay"]);
+        $katalogDateYear = test_input($_POST["katalogYear"]);
+
+    if (strlen($katalogDateMonth) == '1' || strlen($katalogDateDay) == '1')
+    {
+        $temp = "0";
+    }
+    else
+    {
+        $temp = "";
+    }
+
+    $katalogDateMonth = $temp.$katalogDateMonth;
+    $katalogDateDay = $temp.$katalogDateDay;
+    $katalogDate = $katalogDateYear.'-'.$katalogDateMonth.'-'.$katalogDateDay;
+
+    $phrasecatalog_fields = [
+                'katalog_pin'=>$katalogPin,
+                'katalog_distributor' =>$katalogDistributor,
+                'katalog_version' =>$katalogVersion,
+                'katalog_datum' => $katalogDate,
+                'num_range' => $numberRange
+            ];
+
+            $pt->updatePhraseCatalogue($phrasecatalog_fields,$katalogID);
+}
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
+
+<style type="text/css">
+
+.pagination a {
+color: black;
+float: left;
+padding: 8px 16px;
+text-decoration: none;
+transition: background-color .3s;
+}
+
+/* Style the active/current link */
+.pagination a.active {
+background-color: dodgerblue;
+color: white;
+}
+
+/* Add a grey background color on mouse-over */
+.pagination a:hover:not(.active) {background-color: #ddd;}
+
+</style>
 
 <head>
     <!-- Required meta tags-->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <meta name="keywords" content="">
 
     <!-- Title Page-->
-    <title>Phrasetext ~ Phrasetool by Rimpido</title>
+    <title>Edit Phrasecatalogue</title>
 
     <!-- Fontfaces CSS-->
     <link href="../../css/font-face.css" rel="stylesheet" media="all">
@@ -34,27 +120,6 @@
     <!-- Main CSS-->
     <link href="../../css/theme.css" rel="stylesheet" media="all">
 
-    <style type="text/css">
-
-        .pagination a {
-          color: black;
-          float: left;
-          padding: 8px 16px;
-          text-decoration: none;
-          transition: background-color .3s;
-        }
-
-        /* Style the active/current link */
-        .pagination a.active {
-          background-color: dodgerblue;
-          color: white;
-        }
-
-        /* Add a grey background color on mouse-over */
-        .pagination a:hover:not(.active) {background-color: #ddd;}
-    
-    </style>
-
 </head>
 
 <body class="animsition">
@@ -76,7 +141,7 @@
                 </div>
                 <nav class="navbar-sidebar2">
                     <ul class="list-unstyled navbar__list">
-                        <li class=" has-sub">
+                         <li class=" has-sub">
                             <a class="js-arrow" href="#">
                                 <i class="fas fa-user"></i>User
                                 <span class="arrow">
@@ -113,7 +178,7 @@
                             </ul>
                         </li>
 
-                         <li class="active has-sub">
+                         <li class=" has-sub">
                             <a class="js-arrow" href="#">
                                 <i class="fas fa-quote-left"></i>Phrasetext
                                 <span class="arrow">
@@ -122,19 +187,19 @@
                             </a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
                                 <li>
-                                    <a href="phrasetext_landing.html">
+                                    <a href="../phrasetext/phrasetext_landing.html">
                                         <i class="fas fa-search"></i>Search Phrasetext</a>
                                 </li>
                                 <li>
-                                    <a href="missing_phrasetext.html">
+                                    <a href="../phrasetext/missing_phrasetext.html">
                                         <i class="fas fa-exclamation-circle"></i>Missing Translation</a>
                                 </li>
                                 <li>
-                                    <a href="list_phraseheads.html">
+                                    <a href="../phrasetext/list_phraseheads.html">
                                         <i class="fas fa-list-ol"></i>List Phraseheads</a>
                                 </li>
                                 <li>
-                                    <a href="new_phrasehead.html">
+                                    <a href="../phrasetext/new_phrasehead.html">
                                         <i class="far fa-plus-square"></i>New Phrasehead</a>
                                 </li>
                                
@@ -142,7 +207,7 @@
                         </li>
 
 
-                        <li class="has-sub">
+                        <li class="active has-sub">
                             <a class="js-arrow" href="#">
                                 <i class="fas fa-list-alt"></i>Phrasecatalogue
                                 <span class="arrow">
@@ -151,11 +216,11 @@
                             </a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
                                 <li>
-                                    <a href="../phrasecatalogue/list_and_map.html">
+                                    <a href="list_and_map.html">
                                         <i class="fas fa-map-signs"></i>List and Map</a>
                                 </li>
                                 <li>
-                                    <a href="../phrasecatalogue/new_phrasecatalogue.html">
+                                    <a href="new_phrasecatalogue.html">
                                         <i class="fas fa-plus"></i>New Phrasecatalogue</a>
                                 </li>
                                 <li class="has-sub">
@@ -167,17 +232,17 @@
                                     </a>
                                     <ul class= "list-unstyled navbar__sub-list js-sub-list2">
                                         <li>
-                                            <a href="../phrasecatalogue/phrasecatalogue_import.html">
+                                            <a href="phrasecatalogue_import.html">
                                                 <i class="fas fa-file-download"></i>Phrasecatalogue Import
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="../phrasecatalogue/phraseset_import.html">
+                                            <a href="phraseset_import.html">
                                                 <i class="fas fa-file-download"></i>Phraseset Import
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="../phrasecatalogue/propertytree_import.html">
+                                            <a href="propertytree_import.html">
                                                 <i class="fas fa-file-download"></i>Propertytree Import
                                             </a>
                                         </li>
@@ -192,34 +257,34 @@
                                     </a>
                                     <ul class = "list-unstyled navbar__sub-list js-sub-list2">
                                         <li>
-                                            <a href="../phrasecatalogue/phrasecatalogue_export.html">
+                                            <a href="phrasecatalogue_export.html">
                                                 <i class="fas fa-file-export"></i>Phrasecatalogue Export
                                             </a>
                                         </li>
                                     </ul>
                                 </li>
                                 <li>
-                                    <a href="../phrasecatalogue/phrasecatalogue_comparison.html">
+                                    <a href="phrasecatalogue_comparison.html">
                                         <i class="fas fa-greater-than-equal"></i>Phrasecatalogue Comparison</a>
                                 </li>
                                 <li>
-                                    <a href="../phrasecatalogue/resume_phrase_mapping.html">
+                                    <a href="resume_phrase_mapping.html">
                                         <i class="fas fa-map"></i>Resume Phrase mapping</a>
                                 </li>
                                 <li>
-                                    <a href="../phrasecatalogue/list_phrasegroup.html">
+                                    <a href="list_phrasegroup.html">
                                         <i class="fas fa-th-list"></i>List Phrase Group</a>
                                 </li>
                                 <li>
-                                    <a href="../phrasecatalogue/new_phrasegroup.html">
+                                    <a href="new_phrasegroup.html">
                                         <i class="far fa-file"></i>New Phrase Group</a>
                                 </li>
                                 <li>
-                                    <a href="../phrasecatalogue/compress_phrasecatalogue.html">
+                                    <a href="compress_phrasecatalogue.html">
                                         <i class="fas fa-compress"></i>Compress Phrasecatalogue</a>
                                 </li>
                                 <li>
-                                    <a href="../phrasecatalogue/list_special_data.html">
+                                    <a href="list_special_data.html">
                                         <i class="fas fa-eye"></i>View Special Data</a>
                                 </li>
                                
@@ -536,7 +601,7 @@
                         <div class="header-wrap2">
                             <div class="logo d-block d-lg-none">
                                 <a href="#">
-                                    <img src="" alt="" />
+                                    <!-- LOGO HERE -->
                                 </a>
                             </div>
                             <div class="header-button2">
@@ -624,7 +689,8 @@
                                             <a href="../privacy/privacy-statement.html">
                                                 <i class="fas fa-lock"></i>Privacy Statement</a>
                                         </div>
-                                        <div class="account-dropdown__item">
+
+                                         <div class="account-dropdown__item">
                                             <a href="../privacy/debugging.html">
                                                 <i class="fas fa-tools"></i>Debugging</a>
                                         </div>
@@ -640,17 +706,22 @@
                         </div>
                     </div>
                 </div>
+
+            <!-- TO DO: DIRECTORY PATHS -->
             </header>
             <aside class="menu-sidebar2 js-right-sidebar d-block d-lg-none">
                 <div class="logo">
                     <a href="#">
-                        <img src="" alt="" />
+                        <!-- LOGO -->
                     </a>
                 </div>
                 <div class="menu-sidebar2__content js-scrollbar2">
                     <div class="account2">
                         <div class="image img-cir img-120">
+
+                            <!-- USER IMAGE -->
                             <img src="../../images/icon/user.jpg" alt="User" />
+
                         </div>
                         <h4 class="name">User</h4>
                         <a href="#">Sign out</a>
@@ -694,7 +765,7 @@
                             </ul>
                         </li>
 
-                         <li class="active has-sub">
+                         <li class=" has-sub">
                             <a class="js-arrow" href="#">
                                 <i class="fas fa-quote-left"></i>Phrasetext
                                 <span class="arrow">
@@ -703,19 +774,19 @@
                             </a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
                                 <li>
-                                    <a href="phrasetext_landing.html">
+                                    <a href="../phrasetext/phrasetext_landing.html">
                                         <i class="fas fa-search"></i>Search Phrasetext</a>
                                 </li>
                                 <li>
-                                    <a href="missing_phrasetext.html">
+                                    <a href="../phrasetext/missing_phrasetext.html">
                                         <i class="fas fa-exclamation-circle"></i>Missing Translation</a>
                                 </li>
                                 <li>
-                                    <a href="list_phraseheads.html">
+                                    <a href="../phrasetext/list_phraseheads.html">
                                         <i class="fas fa-list-ol"></i>List Phraseheads</a>
                                 </li>
                                 <li>
-                                    <a href="new_phrasehead.html">
+                                    <a href="../phrasetext/new_phrasehead.html">
                                         <i class="far fa-plus-square"></i>New Phrasehead</a>
                                 </li>
                                
@@ -723,7 +794,7 @@
                         </li>
 
 
-                        <li class="has-sub">
+                        <li class="active has-sub">
                             <a class="js-arrow" href="#">
                                 <i class="fas fa-list-alt"></i>Phrasecatalogue
                                 <span class="arrow">
@@ -732,11 +803,11 @@
                             </a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
                                 <li>
-                                    <a href="../phrasecatalogue/list_and_map.html">
+                                    <a href="list_and_map.html">
                                         <i class="fas fa-map-signs"></i>List and Map</a>
                                 </li>
                                 <li>
-                                    <a href="../phrasecatalogue/new_phrasecatalogue.html">
+                                    <a href="new_phrasecatalogue.html">
                                         <i class="fas fa-plus"></i>New Phrasecatalogue</a>
                                 </li>
                                 <li class="has-sub">
@@ -748,17 +819,17 @@
                                     </a>
                                     <ul class= "list-unstyled navbar__sub-list js-sub-list2">
                                         <li>
-                                            <a href="../phrasecatalogue/phrasecatalogue_import.html">
+                                            <a href="phrasecatalogue_import.html">
                                                 <i class="fas fa-file-download"></i>Phrasecatalogue Import
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="../phrasecatalogue/phraseset_import.html">
+                                            <a href="phraseset_import.html">
                                                 <i class="fas fa-file-download"></i>Phraseset Import
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="../phrasecatalogue/propertytree_import.html">
+                                            <a href="propertytree_import.html">
                                                 <i class="fas fa-file-download"></i>Propertytree Import
                                             </a>
                                         </li>
@@ -773,34 +844,34 @@
                                     </a>
                                     <ul class = "list-unstyled navbar__sub-list js-sub-list2">
                                         <li>
-                                            <a href="../phrasecatalogue/phrasecatalogue_export.html">
+                                            <a href="phrasecatalogue_export.html">
                                                 <i class="fas fa-file-export"></i>Phrasecatalogue Export
                                             </a>
                                         </li>
                                     </ul>
                                 </li>
                                 <li>
-                                    <a href="../phrasecatalogue/phrasecatalogue_comparison.html">
+                                    <a href="phrasecatalogue_comparison.html">
                                         <i class="fas fa-greater-than-equal"></i>Phrasecatalogue Comparison</a>
                                 </li>
                                 <li>
-                                    <a href="../phrasecatalogue/resume_phrase_mapping.html">
+                                    <a href="resume_phrase_mapping.html">
                                         <i class="fas fa-map"></i>Resume Phrase mapping</a>
                                 </li>
                                 <li>
-                                    <a href="../phrasecatalogue/list_phrasegroup.html">
+                                    <a href="list_phrasegroup.html">
                                         <i class="fas fa-th-list"></i>List Phrase Group</a>
                                 </li>
                                 <li>
-                                    <a href="../phrasecatalogue/new_phrasegroup.html">
+                                    <a href="new_phrasegroup.html">
                                         <i class="far fa-file"></i>New Phrase Group</a>
                                 </li>
                                 <li>
-                                    <a href="../phrasecatalogue/compress_phrasecatalogue.html">
+                                    <a href="compress_phrasecatalogue.html">
                                         <i class="fas fa-compress"></i>Compress Phrasecatalogue</a>
                                 </li>
                                 <li>
-                                    <a href="../phrasecatalogue/list_special_data.html">
+                                    <a href="list_special_data.html">
                                         <i class="fas fa-eye"></i>View Special Data</a>
                                 </li>
                                
@@ -1119,12 +1190,12 @@
                                         <span class="au-breadcrumb-span">You are here:</span>
                                         <ul class="list-unstyled list-inline au-breadcrumb__list">
                                             <li class="list-inline-item active">
-                                                <a href="#">Phrasetext</a>
+                                                <a href="list_label.html">Phrase Catalogue</a>
                                             </li>
                                             <li class="list-inline-item seprate">
                                                 <span>/</span>
                                             </li>
-                                            <li class="list-inline-item">Edit Phrasehead</li>
+                                            <li class="list-inline-item">NEW PHRASE CATALOGUE</li>
                                         </ul>
                                     </div>
                                     <!--
@@ -1137,126 +1208,152 @@
                     </div>
                 </div>
             </section>
-            <!-- END BREADCRUMB-->
+
+            <!-- START OF LIST LABEL DETAILS -->
+
+            <!-- FIRST CONTAINER -->
+            <br>
+              <section>
+                <div class="section__content section__content--p30">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-xl-12">
+                                <div class="statistic__item">
+
+                                    <?php
+
+                                         
+                                            
+                                            $rows = $pt->viewPhrasecatalogue($phrasecatalogueID);
+
+                                            foreach ($rows as $row)
+                                            {   
+                                                $katalogID = $row["phrasenkatalog_id"];
+                                                $katalogPin = $row["katalog_pin"];
+                                                $katalogDistributor = $row["katalog_distributor"];
+                                                $katalogVersion = $row["katalog_version"]; 
+                                                $katalogDate = $row['katalog_datum'];
+                                                $numberRange = $row['num_range'];
+                                            }     
+                                            
+                                        ?>
+
+                                    <h2>EDIT PHRASECATALOGUE</h2>
+                                    <br>
+                                    Change the field(s) to update the Phrasecatalogue.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECOND CONTAINER -->
+
+            <section>
+                <div class="section__content section__content--p30">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-xl-12">
+                                <div class = "task-progress">
+                                   
+                                   <form class="form-horizontal" method= "POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
 
 
-            <!-- Container Start -->
-            <center>
-                            <div class="col-lg-12">
-                                <div class="card">
-                                    <div class="card-header">
-                                        <strong>Edit Phrasehead </strong>
-                                   </div>
-                                    <div class="card-body card-block">
-                                        <form action="" method="post" class="form-horizontal">
-                                            <div class="row form-group">
-                                                <div class="col col-md-6">
-                                                    <br>
-                                                    Phrase Catalogue<i style="color:red;">*</i> <br>
-                                                    <div class="btn-group">
-                                                                <button type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle btn btn-warning">Please Select.</button>
-                                                            <div tabindex="-1" aria-hidden="true" role="menu" class="dropdown-menu">
-                                                                <button type="button" tabindex="0" class="dropdown-item">ACT01</button>
-                                                                <button type="button" tabindex="0" class="dropdown-item">ACT20</button>
-                                                                <button type="button" tabindex="0" class="dropdown-item">EPOS</button>
-                                                            </div>
-                                                    </div>
-                                                </div>
+                                    <!-- THIS FIELD MUST BE SET -->
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-3" for="katalogpin"><b>Katalog Pin:</b></label>
+                                        <div class="col-sm-12">
+                                            <?php
+                                                echo "<input type = 'hidden' class='form-control' id='katalogID' name='katalogID' value = '".$katalogID."'>";
+                                                echo "<input type='text' class='form-control' id='katalogPin' name='katalogPin' value='".$katalogPin."'>";
+                                                
+                                            ?>
+                                            
+                                        </div>
+                                    </div>
+                                    <!-- THIS FIELD MUST BE SET -->
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-3" for="cataloguedistributor"><b>Catalogue distributor:</b></label>
+                                        <div class="col-sm-12">
+                                            <?php
+                                                echo "<input type='text' class='form-control' id='katalogDistributor' name='katalogDistributor' value ='".$katalogDistributor."'> ";
+                                                
+                                            ?>
+                                            
+                                        </div>
+                                    </div>
+                                    <!-- THIS FIELD MUST BE SET -->
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-3" for="catalogueversion"><b>Catalogue Version:</b></label>
+                                        <div class="col-sm-12">
+                                            <?php
+                                                echo "<input type = 'text' class='form-control' id = 'katalogVersion' name='katalogVersion' value='".$katalogVersion."'>";
+                                                
+                                            ?>
+                                            
+                                        </div>
+                                    </div>
+                                    <!-- THIS FIELD MUST BE SET -->
 
-                                                <div class="col col-md-6">
-                                                    <br>
-                                                    Select Phrasegroup<i style="color:red;">*</i><br>
-                                                    <div class="btn-group">
-                                                                <button type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle btn btn-warning">Please Select.</button>
-                                                            <div tabindex="-1" aria-hidden="true" role="menu" class="dropdown-menu">
-                                                                <button type="button" tabindex="0" class="dropdown-item">ACT01</button>
-                                                                <button type="button" tabindex="0" class="dropdown-item">ACT20</button>
-                                                                <button type="button" tabindex="0" class="dropdown-item">EPOS</button>
-                                                            </div>
-                                                    </div>
-                                                </div>
+                                    <?php
 
-                                                <div class="col col-md-12">
-                                                    <br>
-                                                    PhraseId <br>
-                                                    <div class="input-group">
-                                                        <input type="text" id="input1-group2" name="input1-group2" placeholder="Insert Phrase ID" class="form-control">
-                                                    </div>
-                                                </div>
 
-                                                <div class="col col-md-6">
-                                                    <div class="form-check">
-                                                        <div class="checkbox">
-                                                            <label for="checkbox1" class="form-check-label ">
-                                                                <BR><BR>
-                                                                <input type="checkbox" id="checkbox1" name="checkbox1" value="option1" class="form-check-input">Commercial Phrase<i style="color:red;">*</i><br>
-                                                            </label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col col-md-6">
-                                                    <div class="form-check">
-                                                        <div class="checkbox">
-                                                            <label for="checkbox1" class="form-check-label ">
-                                                                <BR><BR>
-                                                                <input type="checkbox" id="checkbox1" name="checkbox1" value="option1" class="form-check-input">Released Phrase<i style="color:red;">*</i><br>
-                                                                </label>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                            $completeDate = strtotime($katalogDate);
+                                            $day = date('d',$completeDate);
+                                            $month = date('m',$completeDate);
+                                            $year = date('Y', $completeDate);
 
-                                                <div class="col col-md-6">
-                                                    <br>
-                                                    Euphrac Phrase <br>
-                                                    <div class="input-group">
-                                                        <input type="text" id="input1-group2" name="input1-group2" placeholder="Insert Phrase group" class="form-control">
-                                                    </div>
-                                                </div>
+                                            
 
-                                                <div class="col col-md-6">
-                                                    <br>
-                                                    Structuure Code <br>
-                                                    <div class="input-group">
-                                                        <input type="text" id="input1-group2" name="input1-group2" placeholder="Insert Phrase group" class="form-control">
-                                                    </div>
-                                                </div>
+                                            function selectOption($valueOfOption, $valueOfData)
+                                            {
+                                                if ($valueOfOption == $valueOfData)
+                                                {
+                                                    echo ' selected= "selected"';
+                                                }
+                                            }
 
-                                                <div class="col col-md-6">
-                                                    <br>
-                                                    Original Code <br>
-                                                    <div class="input-group">
-                                                        <input type="text" id="input1-group2" name="input1-group2" placeholder="Insert Phrase group" class="form-control">
-                                                    </div>
-                                                </div>
 
-                                                <div class="col col-md-12">
-                                                    <br>
-                                                    Timestamp<i style="color:red;">*</i><br>
+
+                                            $valueOfData = $day;
+                                            
+                                            
+                                            
+
+                                           // echo $month.$day.$year;
+                                            
+                                        ?>
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-3"><b>Catalogue Date:</b></label>
+                                        <div class="col col-md-12">
                                                     <div class="btn-group">
                                                         <div class="col-12 col-md-12">
-                                                                <select name="select" id="select" class="form-control">
-                                                                    <option value="1">January</option>
-                                                                    <option value="2">February</option>
-                                                                    <option value="3">March</option>
-                                                                    <option value="4">April</option>
-                                                                    <option value="5">May</option>
-                                                                    <option value="6">June</option>
-                                                                    <option value="7">July</option>
-                                                                    <option value="8">August</option>
-                                                                    <option value="9">September</option>
-                                                                    <option value="10">October</option>
-                                                                    <option value="11">November</option>
-                                                                    <option value="12">December</option>
+                                                                <select name="katalogMonth" id="katalogMonth" class="form-control">
+                                                                    <option value="1"<?php selectOption(1,$month); ?>>January</option>
+                                                                    <option value="2"<?php selectOption(2,$month); ?>>February</option>
+                                                                    <option value="3"<?php selectOption(3,$month); ?>>March</option>
+                                                                    <option value="4"<?php selectOption(4,$month); ?>>April</option>
+                                                                    <option value="4"<?php selectOption(5,$month); ?>>April</option>
+                                                                    <option value="5"<?php selectOption(6,$month); ?>>June</option>
+                                                                    <option value="7"<?php selectOption(7,$month); ?>>July</option>
+                                                                    <option value="8"<?php selectOption(8,$month); ?>>August</option>
+                                                                    <option value="9"<?php selectOption(9,$month); ?>>September</option>
+                                                                    <option value="10"<?php selectOption(10,$month); ?>>October</option>
+                                                                    <option value="11"<?php selectOption(11,$month); ?>>November</option>
+                                                                    <option value="12"<?php selectOption(12,$month); ?>>December</option>
                                                                 </select>
                                                         </div>
                                                     </div>
                                                     <div class="btn-group">
                                                             <div class="col-12 col-md-12">
-                                                                <select name="select" id="select" class="form-control">
+                                                                <select name="katalogDay" id="katalogDay" class="form-control">
                                                                     <?php
 
-                                                                    for ($x = 1; $x < 30; $x++){
-                                                                        echo "<option value=". $x .">". $x ."</option>";
+                                                                    for ($x = 1; $x < 32; $x++){
+                                                                    ?>
+                                                                        <option value="<?php echo $x; ?>"<?php selectOption($x,$day) ?>><?php echo $x; ?></option>
+                                                                    <?php
                                                                     }
                                                                     ?>
                                                                 </select>
@@ -1264,87 +1361,57 @@
                                                     </div>
                                                     <div class="btn-group">
                                                             <div class="col-12 col-md-12">
-                                                                <select name="select" id="select" class="form-control">
+                                                                <select name="katalogYear" id="katalogYear" class="form-control">
                                                                     <?php
 
                                                                     for ($x = 1999; $x < 2040; $x++){
-                                                                        echo "<option value=". $x .">". $x ."</option>";
-                                                                    }
                                                                     ?>
-                                                                </select>
-                                                            </div>
-                                                    </div>
-                                                    <div class="btn-group">
-                                                            <div class="col-12 col-md-12">
-                                                                <select name="select" id="select" class="form-control">
-                                                                    <?php
+                                                                        <option value="<?php echo $x; ?>"<?php selectOption($x,$year) ?>><?php echo $x; ?></option>
 
-                                                                    for ($x = 1; $x < 9; $x++){
-                                                                        echo "<option value=". $x .">". $x ."</option>";
-                                                                    }
-                                                                    ?>
-                                                                </select>
-                                                            </div>
-                                                    </div>
-                                                    <div class="btn-group">
-                                                            <div class="col-12 col-md-12">
-                                                                <select name="select" id="select" class="form-control">
                                                                     <?php
-
-                                                                    for ($x = 00; $x < 60; $x++){
-                                                                        echo "<option value=". $x .">". $x ."</option>";
                                                                     }
                                                                     ?>
                                                                 </select>
                                                             </div>
-                                                    </div>
-                                                    <div class="btn-group">
-                                                        <div class="col-12 col-md-12">
-                                                                <select name="select" id="select" class="form-control">
-                                                                    <option value="1">AM</option>
-                                                                    <option value="2">PM</option>
-                                                                </select>
-                                                        </div>
                                                     </div>
                                             </div>
-
-
-                                            </div>
-                                        </form>
-                                        <br>
-                                     <button type="submit" class="btn btn-success btn-sm">
-                                                <i class="fa fa-dot-circle-o"></i> Submit
-                                    </button>
                                     </div>
-                                        
-                                </div>
-                            </div>
-
-                                <!-- MODAL -->
-
-                                <div class="modal fade" id="deletePhraseHead" tabindex="-1" role="dialog" aria-labelledby="smallmodalLabel" aria-hidden="true">
-                                     <div class="modal-dialog modal-sm" role="document">
-                                        <div class="modal-content">
-                                           <div class="modal-header">
-                                                 <h5 class="modal-title" id="smallmodalLabel">Confirm Deletion?</h5>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                           </div>
-                                <div class="modal-body">
-                                    <p>
-                                        Are you sure you want to delete this Phrase?
-                                    </p>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                                    <button type="button" class="btn btn-primary">Confirm</button>
-                                </div>
+                                    <!-- THIS FIELD MUST BE SET -->
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-3" for="numberrange"><b>Number Range:</b></label>
+                                        <div class="col-sm-12">
+                                            <?php
+                                                echo "<input type = 'text' class='form-control' id = 'numberRange' name='numberRange' value='".$numberRange."'>";  
+                                            ?>
+                                            
                                         </div>
                                     </div>
+                                    
+                                   
+                                            <br>
+
+                                            <div class="form-group">
+                                        <center> 
+                                          <div class="col-sm-offset-2 col-sm-12">
+                                            <button type="submit" class="btn btn-warning" name="submit" value="Submit">Submit</button>
+                                          </div>
+                                        </center>
+                                        </div>
+                                   </form>
                                 </div>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+
+            <!-- END OF LABEL LIST DETAILS -->
 
 
+            <!-- END BREADCRUMB-->
 
             <!-- 
             <section class="statistic">

@@ -6,13 +6,7 @@ function __autoload($class)
   require_once "../../classes/$class.php";
 }
 
-if(!isset($_GET['page']))
-{
-     $page = 1;
-}else
-{
-    $page = $_GET['page']; 
-}
+
 
 ?>
 
@@ -1172,7 +1166,37 @@ if(!isset($_GET['page']))
                                     <div class="card-body card-block">
                                         <div class = "task-progress">
                                         <div class="table-responsive">
-                <form action="edit_phrasehead.php" method="post">                    
+                                          <!--
+                                        <table class="table table-hover">
+                                        <thead>
+                                        <tr>
+                                        <th>Produktname</th>
+                                        <th>Sprache 1</th>
+                                        <th>Sprache 2</th>
+                                        <th>Inhalt Sprache 1</th>
+                                        <th>Actions</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                        <td>Data 1</td>
+                                        <td>Data 2</td>
+                                        <td>Data 3</td>
+                                        <td>Data 4</td>
+                                        <td>
+
+                                        <div style="margin-left:2em; margin-top:-0.1em; padding-left:1em;">
+                                        <button type="button" class="btn btn-warning btn-sm">View</button>
+                                        <button type="button" class="btn btn-warning btn-sm"><a href="edit_phrasehead.php" style="color: black;">Edit</a></button>
+                                        <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#deletePhraseHead">Delete</button>
+
+                                        </div>
+                                        </td>
+                                        </tr>
+
+                                        </tbody>
+                                        </table>
+                                    -->
                   <table class="table table-hover">
                   <thead>
                     <tr>
@@ -1186,16 +1210,7 @@ if(!isset($_GET['page']))
                   <tbody>
                     <?php
                         $pt = new Phrasetool();
-                        $rowCount = $pt->returnPhraseheadRowCount(); //return number of rows in db
-                         $rowPerPage = 25; //number of rows per page
-                         $numberOfPages = ceil($rowCount / $rowPerPage); //number of pages
-                         $startingLimitNumber = ($page - 1) * $rowPerPage; //limit number
-
-
-
-                        //$rows = $pt->displayPhraseGroupList($rowPerPage,$startingLimitNumber);
-                       
-                        $rows = $pt->displayListPhraseHead($rowPerPage,$startingLimitNumber);
+                        $rows = $pt->displayListPhraseHead();
                         foreach ($rows as $row) 
                         {
 
@@ -1206,7 +1221,7 @@ if(!isset($_GET['page']))
                             <td><?php echo $row['katalog_pin']; ?></td>
                             <td><?php echo $row['phrasengruppe']; ?></td>
                             <td><?php echo $row['phrasenid']; ?></td>
-                            <td> <button type="submit" class="btn btn-sm btn-outline-primary" name="phraseheadEditBtn" value="<?php echo $row['phrasenkopf_id']; ?>">Edit</button>&nbsp;<a class="btn btn-sm btn-outline-danger" href=""><i class="fa fa-trash-o" aria-hidden="true"></i>&nbsp;Delete</a>&nbsp;<a  class="btn btn-sm btn-outline-success" href="view_phrasehead.php?read=<?php echo $row['phrasenkopf_id']; ?>"><i class="fa fa-file-text-o" aria-hidden="true"></i>&nbsp;View</a></td>
+                            <td><a class="btn btn-sm btn-outline-primary" href="edit_phrasehead.php?id=<?php echo $row['phrasenkopf_id']; ?>"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>&nbsp;Edit</a>&nbsp;<a class="btn btn-sm btn-outline-danger" href=""><i class="fa fa-trash-o" aria-hidden="true"></i>&nbsp;Delete</a>&nbsp;<a  class="btn btn-sm btn-outline-success" href=""><i class="fa fa-file-text-o" aria-hidden="true"></i>&nbsp;View</a></td>
                             </tr>
                     <?php
                         }
@@ -1218,22 +1233,17 @@ if(!isset($_GET['page']))
                     
                   </tbody>
                 </table>
-            </form>
                                         </div>
                                     </div>
-                                         <div class="col-md-12">
-                                     <div class="text-center">
-                                        <ul class="pagination pagination-lg">
-                                        <?php
-
-                                            for($page = 1; $page <= $numberOfPages; $page++)
-                                            {
-                                                echo '<li><a href = "list_phraseheads.php?page='.$page.'">'. $page .'</a></li>';
-                                            }
-                                        ?>
-                                    </ul>
-                                    </div>
-                                    </div>
+                                        <div class="pagination" style="margin-left:20em;">
+                                            <a href="#"><<</a>
+                                            <a href="#">1</a>
+                                            <a href="#">2</a>
+                                            <a href="#">3</a>
+                                            <a href="#">4</a>
+                                            <a href="#">5</a>
+                                            <a href="#">>></a>
+                                        </div>
                                     </div>
                                     </div>
                                 </div>

@@ -1,16 +1,61 @@
+<?php
+
+function __autoload($class)
+{
+  require_once "../../classes/$class.php";
+}
+
+if(isset($_GET['value']))
+{
+    $phrasecatalogueID = $_GET['value'];
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
+<style type="text/css">
+
+.pagination a {
+color: black;
+float: left;
+padding: 8px 16px;
+text-decoration: none;
+transition: background-color .3s;
+}
+
+/* Style the active/current link */
+.pagination a.active {
+background-color: dodgerblue;
+color: white;
+}
+
+/* Add a grey background color on mouse-over */
+.pagination a:hover:not(.active) {background-color: #ddd;}
+
+</style>
+
+<!--hide div-->
+<script type="text/javascript">
+
+    function showDiv() {
+      var x = document.getElementById("hiddenDiv");
+      if (x.style.display === "none") {
+        x.style.display = "block";
+      } else {
+        x.style.display = "none";
+      }
+    }  
+
+</script>
 <head>
     <!-- Required meta tags-->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <meta name="keywords" content="">
 
     <!-- Title Page-->
-    <title>Phrasetext ~ Phrasetool by Rimpido</title>
+    <title>Compress Phrasecatalogue</title>
 
     <!-- Fontfaces CSS-->
     <link href="../../css/font-face.css" rel="stylesheet" media="all">
@@ -33,27 +78,6 @@
 
     <!-- Main CSS-->
     <link href="../../css/theme.css" rel="stylesheet" media="all">
-
-    <style type="text/css">
-
-        .pagination a {
-          color: black;
-          float: left;
-          padding: 8px 16px;
-          text-decoration: none;
-          transition: background-color .3s;
-        }
-
-        /* Style the active/current link */
-        .pagination a.active {
-          background-color: dodgerblue;
-          color: white;
-        }
-
-        /* Add a grey background color on mouse-over */
-        .pagination a:hover:not(.active) {background-color: #ddd;}
-    
-    </style>
 
 </head>
 
@@ -113,7 +137,7 @@
                             </ul>
                         </li>
 
-                         <li class="active has-sub">
+                         <li class=" has-sub">
                             <a class="js-arrow" href="#">
                                 <i class="fas fa-quote-left"></i>Phrasetext
                                 <span class="arrow">
@@ -122,19 +146,19 @@
                             </a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
                                 <li>
-                                    <a href="phrasetext_landing.html">
+                                    <a href="../phrasetext/phrasetext_landing.html">
                                         <i class="fas fa-search"></i>Search Phrasetext</a>
                                 </li>
                                 <li>
-                                    <a href="missing_phrasetext.html">
+                                    <a href="../phrasetext/missing_phrasetext.html">
                                         <i class="fas fa-exclamation-circle"></i>Missing Translation</a>
                                 </li>
                                 <li>
-                                    <a href="list_phraseheads.html">
+                                    <a href="../phrasetext/list_phraseheads.html">
                                         <i class="fas fa-list-ol"></i>List Phraseheads</a>
                                 </li>
                                 <li>
-                                    <a href="new_phrasehead.html">
+                                    <a href="../phrasetext/new_phrasehead.html">
                                         <i class="far fa-plus-square"></i>New Phrasehead</a>
                                 </li>
                                
@@ -142,7 +166,7 @@
                         </li>
 
 
-                        <li class="has-sub">
+                        <li class="active has-sub">
                             <a class="js-arrow" href="#">
                                 <i class="fas fa-list-alt"></i>Phrasecatalogue
                                 <span class="arrow">
@@ -151,11 +175,11 @@
                             </a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
                                 <li>
-                                    <a href="../phrasecatalogue/list_and_map.html">
+                                    <a href="list_and_map.html">
                                         <i class="fas fa-map-signs"></i>List and Map</a>
                                 </li>
                                 <li>
-                                    <a href="../phrasecatalogue/new_phrasecatalogue.html">
+                                    <a href="new_phrasecatalogue.html">
                                         <i class="fas fa-plus"></i>New Phrasecatalogue</a>
                                 </li>
                                 <li class="has-sub">
@@ -167,17 +191,17 @@
                                     </a>
                                     <ul class= "list-unstyled navbar__sub-list js-sub-list2">
                                         <li>
-                                            <a href="../phrasecatalogue/phrasecatalogue_import.html">
+                                            <a href="phrasecatalogue_import.html">
                                                 <i class="fas fa-file-download"></i>Phrasecatalogue Import
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="../phrasecatalogue/phraseset_import.html">
+                                            <a href="phraseset_import.html">
                                                 <i class="fas fa-file-download"></i>Phraseset Import
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="../phrasecatalogue/propertytree_import.html">
+                                            <a href="propertytree_import.html">
                                                 <i class="fas fa-file-download"></i>Propertytree Import
                                             </a>
                                         </li>
@@ -192,34 +216,34 @@
                                     </a>
                                     <ul class = "list-unstyled navbar__sub-list js-sub-list2">
                                         <li>
-                                            <a href="../phrasecatalogue/phrasecatalogue_export.html">
+                                            <a href="phrasecatalogue_export.html">
                                                 <i class="fas fa-file-export"></i>Phrasecatalogue Export
                                             </a>
                                         </li>
                                     </ul>
                                 </li>
                                 <li>
-                                    <a href="../phrasecatalogue/phrasecatalogue_comparison.html">
+                                    <a href="phrasecatalogue_comparison.html">
                                         <i class="fas fa-greater-than-equal"></i>Phrasecatalogue Comparison</a>
                                 </li>
                                 <li>
-                                    <a href="../phrasecatalogue/resume_phrase_mapping.html">
+                                    <a href="resume_phrase_mapping.html">
                                         <i class="fas fa-map"></i>Resume Phrase mapping</a>
                                 </li>
                                 <li>
-                                    <a href="../phrasecatalogue/list_phrasegroup.html">
+                                    <a href="list_phrasegroup.html">
                                         <i class="fas fa-th-list"></i>List Phrase Group</a>
                                 </li>
                                 <li>
-                                    <a href="../phrasecatalogue/new_phrasegroup.html">
+                                    <a href="new_phrasegroup.html">
                                         <i class="far fa-file"></i>New Phrase Group</a>
                                 </li>
                                 <li>
-                                    <a href="../phrasecatalogue/compress_phrasecatalogue.html">
+                                    <a href="compress_phrasecatalogue.html">
                                         <i class="fas fa-compress"></i>Compress Phrasecatalogue</a>
                                 </li>
                                 <li>
-                                    <a href="../phrasecatalogue/list_special_data.html">
+                                    <a href="list_special_data.html">
                                         <i class="fas fa-eye"></i>View Special Data</a>
                                 </li>
                                
@@ -527,7 +551,7 @@
         </aside>
         <!-- END MENU SIDEBAR-->
 
-        <!-- PAGE CONTAINER-->
+         <!-- PAGE CONTAINER-->
         <div class="page-container2">
             <!-- HEADER DESKTOP-->
             <header class="header-desktop2">
@@ -536,7 +560,7 @@
                         <div class="header-wrap2">
                             <div class="logo d-block d-lg-none">
                                 <a href="#">
-                                    <img src="" alt="" />
+                                    <!-- LOGO HERE -->
                                 </a>
                             </div>
                             <div class="header-button2">
@@ -640,17 +664,22 @@
                         </div>
                     </div>
                 </div>
+
+            <!-- TO DO: DIRECTORY PATHS -->
             </header>
             <aside class="menu-sidebar2 js-right-sidebar d-block d-lg-none">
                 <div class="logo">
                     <a href="#">
-                        <img src="" alt="" />
+                        <!-- LOGO -->
                     </a>
                 </div>
                 <div class="menu-sidebar2__content js-scrollbar2">
                     <div class="account2">
                         <div class="image img-cir img-120">
+
+                            <!-- USER IMAGE -->
                             <img src="../../images/icon/user.jpg" alt="User" />
+
                         </div>
                         <h4 class="name">User</h4>
                         <a href="#">Sign out</a>
@@ -694,7 +723,7 @@
                             </ul>
                         </li>
 
-                         <li class="active has-sub">
+                         <li class=" has-sub">
                             <a class="js-arrow" href="#">
                                 <i class="fas fa-quote-left"></i>Phrasetext
                                 <span class="arrow">
@@ -703,19 +732,19 @@
                             </a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
                                 <li>
-                                    <a href="phrasetext_landing.html">
+                                    <a href="../phrasetext/phrasetext_landing.html">
                                         <i class="fas fa-search"></i>Search Phrasetext</a>
                                 </li>
                                 <li>
-                                    <a href="missing_phrasetext.html">
+                                    <a href="../phrasetext/missing_phrasetext.html">
                                         <i class="fas fa-exclamation-circle"></i>Missing Translation</a>
                                 </li>
                                 <li>
-                                    <a href="list_phraseheads.html">
+                                    <a href="../phrasetext/list_phraseheads.html">
                                         <i class="fas fa-list-ol"></i>List Phraseheads</a>
                                 </li>
                                 <li>
-                                    <a href="new_phrasehead.html">
+                                    <a href="../phrasetext/new_phrasehead.html">
                                         <i class="far fa-plus-square"></i>New Phrasehead</a>
                                 </li>
                                
@@ -723,7 +752,7 @@
                         </li>
 
 
-                        <li class="has-sub">
+                        <li class="active has-sub">
                             <a class="js-arrow" href="#">
                                 <i class="fas fa-list-alt"></i>Phrasecatalogue
                                 <span class="arrow">
@@ -732,11 +761,11 @@
                             </a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
                                 <li>
-                                    <a href="../phrasecatalogue/list_and_map.html">
+                                    <a href="list_and_map.html">
                                         <i class="fas fa-map-signs"></i>List and Map</a>
                                 </li>
                                 <li>
-                                    <a href="../phrasecatalogue/new_phrasecatalogue.html">
+                                    <a href="new_phrasecatalogue.html">
                                         <i class="fas fa-plus"></i>New Phrasecatalogue</a>
                                 </li>
                                 <li class="has-sub">
@@ -748,17 +777,17 @@
                                     </a>
                                     <ul class= "list-unstyled navbar__sub-list js-sub-list2">
                                         <li>
-                                            <a href="../phrasecatalogue/phrasecatalogue_import.html">
+                                            <a href="phrasecatalogue_import.html">
                                                 <i class="fas fa-file-download"></i>Phrasecatalogue Import
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="../phrasecatalogue/phraseset_import.html">
+                                            <a href="phraseset_import.html">
                                                 <i class="fas fa-file-download"></i>Phraseset Import
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="../phrasecatalogue/propertytree_import.html">
+                                            <a href="propertytree_import.html">
                                                 <i class="fas fa-file-download"></i>Propertytree Import
                                             </a>
                                         </li>
@@ -773,34 +802,34 @@
                                     </a>
                                     <ul class = "list-unstyled navbar__sub-list js-sub-list2">
                                         <li>
-                                            <a href="../phrasecatalogue/phrasecatalogue_export.html">
+                                            <a href="phrasecatalogue_export.html">
                                                 <i class="fas fa-file-export"></i>Phrasecatalogue Export
                                             </a>
                                         </li>
                                     </ul>
                                 </li>
                                 <li>
-                                    <a href="../phrasecatalogue/phrasecatalogue_comparison.html">
+                                    <a href="phrasecatalogue_comparison.html">
                                         <i class="fas fa-greater-than-equal"></i>Phrasecatalogue Comparison</a>
                                 </li>
                                 <li>
-                                    <a href="../phrasecatalogue/resume_phrase_mapping.html">
+                                    <a href="resume_phrase_mapping.html">
                                         <i class="fas fa-map"></i>Resume Phrase mapping</a>
                                 </li>
                                 <li>
-                                    <a href="../phrasecatalogue/list_phrasegroup.html">
+                                    <a href="list_phrasegroup.html">
                                         <i class="fas fa-th-list"></i>List Phrase Group</a>
                                 </li>
                                 <li>
-                                    <a href="../phrasecatalogue/new_phrasegroup.html">
+                                    <a href="new_phrasegroup.html">
                                         <i class="far fa-file"></i>New Phrase Group</a>
                                 </li>
                                 <li>
-                                    <a href="../phrasecatalogue/compress_phrasecatalogue.html">
+                                    <a href="compress_phrasecatalogue.html">
                                         <i class="fas fa-compress"></i>Compress Phrasecatalogue</a>
                                 </li>
                                 <li>
-                                    <a href="../phrasecatalogue/list_special_data.html">
+                                    <a href="list_special_data.html">
                                         <i class="fas fa-eye"></i>View Special Data</a>
                                 </li>
                                
@@ -1109,7 +1138,7 @@
             <!-- END HEADER DESKTOP-->
 
             <!-- BREADCRUMB-->
-            <section class="au-breadcrumb m-t-75">
+           <section class="au-breadcrumb m-t-75">
                 <div class="section__content section__content--p30">
                     <div class="container-fluid">
                         <div class="row">
@@ -1119,12 +1148,12 @@
                                         <span class="au-breadcrumb-span">You are here:</span>
                                         <ul class="list-unstyled list-inline au-breadcrumb__list">
                                             <li class="list-inline-item active">
-                                                <a href="#">Phrasetext</a>
+                                                <a href="#">Phrasecatalogue</a>
                                             </li>
                                             <li class="list-inline-item seprate">
                                                 <span>/</span>
                                             </li>
-                                            <li class="list-inline-item">Edit Phrasehead</li>
+                                            <li class="list-inline-item">Compress Phrasecatalogue</li>
                                         </ul>
                                     </div>
                                     <!--
@@ -1137,214 +1166,95 @@
                     </div>
                 </div>
             </section>
-            <!-- END BREADCRUMB-->
 
+            <!-- START OF LIST LABEL DETAILS -->
 
-            <!-- Container Start -->
-            <center>
-                            <div class="col-lg-12">
-                                <div class="card">
-                                    <div class="card-header">
-                                        <strong>Edit Phrasehead </strong>
-                                   </div>
-                                    <div class="card-body card-block">
-                                        <form action="" method="post" class="form-horizontal">
-                                            <div class="row form-group">
-                                                <div class="col col-md-6">
-                                                    <br>
-                                                    Phrase Catalogue<i style="color:red;">*</i> <br>
-                                                    <div class="btn-group">
-                                                                <button type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle btn btn-warning">Please Select.</button>
-                                                            <div tabindex="-1" aria-hidden="true" role="menu" class="dropdown-menu">
-                                                                <button type="button" tabindex="0" class="dropdown-item">ACT01</button>
-                                                                <button type="button" tabindex="0" class="dropdown-item">ACT20</button>
-                                                                <button type="button" tabindex="0" class="dropdown-item">EPOS</button>
-                                                            </div>
-                                                    </div>
-                                                </div>
+            <!-- FIRST CONTAINER -->
+            <br>
+              <section>
+                <div class="section__content section__content--p30">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-xl-12">
+                                <div class="statistic__item">
 
-                                                <div class="col col-md-6">
-                                                    <br>
-                                                    Select Phrasegroup<i style="color:red;">*</i><br>
-                                                    <div class="btn-group">
-                                                                <button type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle btn btn-warning">Please Select.</button>
-                                                            <div tabindex="-1" aria-hidden="true" role="menu" class="dropdown-menu">
-                                                                <button type="button" tabindex="0" class="dropdown-item">ACT01</button>
-                                                                <button type="button" tabindex="0" class="dropdown-item">ACT20</button>
-                                                                <button type="button" tabindex="0" class="dropdown-item">EPOS</button>
-                                                            </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="col col-md-12">
-                                                    <br>
-                                                    PhraseId <br>
-                                                    <div class="input-group">
-                                                        <input type="text" id="input1-group2" name="input1-group2" placeholder="Insert Phrase ID" class="form-control">
-                                                    </div>
-                                                </div>
-
-                                                <div class="col col-md-6">
-                                                    <div class="form-check">
-                                                        <div class="checkbox">
-                                                            <label for="checkbox1" class="form-check-label ">
-                                                                <BR><BR>
-                                                                <input type="checkbox" id="checkbox1" name="checkbox1" value="option1" class="form-check-input">Commercial Phrase<i style="color:red;">*</i><br>
-                                                            </label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col col-md-6">
-                                                    <div class="form-check">
-                                                        <div class="checkbox">
-                                                            <label for="checkbox1" class="form-check-label ">
-                                                                <BR><BR>
-                                                                <input type="checkbox" id="checkbox1" name="checkbox1" value="option1" class="form-check-input">Released Phrase<i style="color:red;">*</i><br>
-                                                                </label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="col col-md-6">
-                                                    <br>
-                                                    Euphrac Phrase <br>
-                                                    <div class="input-group">
-                                                        <input type="text" id="input1-group2" name="input1-group2" placeholder="Insert Phrase group" class="form-control">
-                                                    </div>
-                                                </div>
-
-                                                <div class="col col-md-6">
-                                                    <br>
-                                                    Structuure Code <br>
-                                                    <div class="input-group">
-                                                        <input type="text" id="input1-group2" name="input1-group2" placeholder="Insert Phrase group" class="form-control">
-                                                    </div>
-                                                </div>
-
-                                                <div class="col col-md-6">
-                                                    <br>
-                                                    Original Code <br>
-                                                    <div class="input-group">
-                                                        <input type="text" id="input1-group2" name="input1-group2" placeholder="Insert Phrase group" class="form-control">
-                                                    </div>
-                                                </div>
-
-                                                <div class="col col-md-12">
-                                                    <br>
-                                                    Timestamp<i style="color:red;">*</i><br>
-                                                    <div class="btn-group">
-                                                        <div class="col-12 col-md-12">
-                                                                <select name="select" id="select" class="form-control">
-                                                                    <option value="1">January</option>
-                                                                    <option value="2">February</option>
-                                                                    <option value="3">March</option>
-                                                                    <option value="4">April</option>
-                                                                    <option value="5">May</option>
-                                                                    <option value="6">June</option>
-                                                                    <option value="7">July</option>
-                                                                    <option value="8">August</option>
-                                                                    <option value="9">September</option>
-                                                                    <option value="10">October</option>
-                                                                    <option value="11">November</option>
-                                                                    <option value="12">December</option>
-                                                                </select>
-                                                        </div>
-                                                    </div>
-                                                    <div class="btn-group">
-                                                            <div class="col-12 col-md-12">
-                                                                <select name="select" id="select" class="form-control">
-                                                                    <?php
-
-                                                                    for ($x = 1; $x < 30; $x++){
-                                                                        echo "<option value=". $x .">". $x ."</option>";
-                                                                    }
-                                                                    ?>
-                                                                </select>
-                                                            </div>
-                                                    </div>
-                                                    <div class="btn-group">
-                                                            <div class="col-12 col-md-12">
-                                                                <select name="select" id="select" class="form-control">
-                                                                    <?php
-
-                                                                    for ($x = 1999; $x < 2040; $x++){
-                                                                        echo "<option value=". $x .">". $x ."</option>";
-                                                                    }
-                                                                    ?>
-                                                                </select>
-                                                            </div>
-                                                    </div>
-                                                    <div class="btn-group">
-                                                            <div class="col-12 col-md-12">
-                                                                <select name="select" id="select" class="form-control">
-                                                                    <?php
-
-                                                                    for ($x = 1; $x < 9; $x++){
-                                                                        echo "<option value=". $x .">". $x ."</option>";
-                                                                    }
-                                                                    ?>
-                                                                </select>
-                                                            </div>
-                                                    </div>
-                                                    <div class="btn-group">
-                                                            <div class="col-12 col-md-12">
-                                                                <select name="select" id="select" class="form-control">
-                                                                    <?php
-
-                                                                    for ($x = 00; $x < 60; $x++){
-                                                                        echo "<option value=". $x .">". $x ."</option>";
-                                                                    }
-                                                                    ?>
-                                                                </select>
-                                                            </div>
-                                                    </div>
-                                                    <div class="btn-group">
-                                                        <div class="col-12 col-md-12">
-                                                                <select name="select" id="select" class="form-control">
-                                                                    <option value="1">AM</option>
-                                                                    <option value="2">PM</option>
-                                                                </select>
-                                                        </div>
-                                                    </div>
-                                            </div>
-
-
-                                            </div>
-                                        </form>
-                                        <br>
-                                     <button type="submit" class="btn btn-success btn-sm">
-                                                <i class="fa fa-dot-circle-o"></i> Submit
-                                    </button>
-                                    </div>
-                                        
+                                    <h2>COMPRESS A CATALOGUE</h2>
+                                    <br>
+                                    All Phraseheads of the selected catalogue will be checked to be unique. Doubles will be deleted from database:
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
-                                <!-- MODAL -->
+            <!-- SECOND CONTAINER -->
+            <!-- TO ADD: PAGINATOR -->
+            <section>
+                <div class="section__content section__content--p30">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-xl-12">
+                                <div class = "task-progress">
+                                    <form class="form-horizontal" action="#">
+                                        <!-- DATABASE DRIVEN DATA -->
+                                        <?php
+                                            $pt = new Phrasetool();
+                                            $rows = $pt->selectPhraseCataloguePin();
 
-                                <div class="modal fade" id="deletePhraseHead" tabindex="-1" role="dialog" aria-labelledby="smallmodalLabel" aria-hidden="true">
-                                     <div class="modal-dialog modal-sm" role="document">
-                                        <div class="modal-content">
-                                           <div class="modal-header">
-                                                 <h5 class="modal-title" id="smallmodalLabel">Confirm Deletion?</h5>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
+                                            
+
+
+                                        ?>
+                                       <div class="form-group">
+                                          <label class="control-label col-sm-2" for="targetcatalogue"><b>Target Catalogue:</b></label>
+                                          <div class="col-sm-12">          
+                                            <select class= "form-control" name="targetcatalogue" id="targetcatalogue">
+                                                <?php
+                                                    foreach($rows as $row)
+                                                    {
+                                                        echo "<option value=".$row['phrasenkatalog_id'].">".$row['katalog_pin']."</option>";
+                                                    }
+                                                ?>
+                                            </select>
                                            </div>
-                                <div class="modal-body">
-                                    <p>
-                                        Are you sure you want to delete this Phrase?
-                                    </p>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                                    <button type="button" class="btn btn-primary">Confirm</button>
-                                </div>
+                                          </div>
+
+                                          <div class="form-group">
+                                        <div class="col-sm-12">
+                                            <div class="checkbox">
+                                              <label><input type="checkbox" value="rewritephrasesets"><b>Rewrite Phrasesets</b></label>
+                                              <br>
+                                              <font size="2"> <i>If a Phrase can be compressed (i.e. Phrase will be deleted from catalogue) the reference to Psets will be transferred to the unique Prhase. If not checked, your Phrase sets may be erroneous</i>  </font>
+                                              <br><br>
+                                              <label><input type="checkbox" value="rewritespecialdata"><b>Rewrite Special Data</b></label>
+                                              <br>
+                                              <font size="2"> <i>If a Phrase can be compressed (i.e. the Phrase will be deleted from catalogue) corresponding special data entries will be changed to the unique Phrase.</i>  </font>
+                                            </div>
+                                            <br>
                                         </div>
                                     </div>
+
+                                          <div class="form-group">
+                                        <center> 
+                                          <div class="col-sm-offset-2 col-sm-12">
+                                            <button type="submit" class="btn btn-warning">Submit</button>
+                                          </div>
+                                        </center>
+                                        </div>
+                                    </form>
                                 </div>
+                              </div>     
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- END OF LABEL LIST DETAILS -->
 
 
+            <!-- END BREADCRUMB-->
 
             <!-- 
             <section class="statistic">
